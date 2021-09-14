@@ -1,0 +1,24 @@
+.TopNavbar {
+  height: 65px;
+  background-color: lightgray;
+}
+
+.TopNavbar .avatar {
+  height: 38px;
+  width: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.TopNavbar .dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.TopNavbar .dropdown-menu.show {
+  padding-bottom: 0;
+}
+
+.TopNavbar a {
+  text-decoration: none;
+}

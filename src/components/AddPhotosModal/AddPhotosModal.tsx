@@ -9,7 +9,7 @@ const AddPhotosModal = () => {
 
   const handleClose = () => setShow(false)
 
-  const map = useMapEvent("click", e => {
+  const map = useMapEvent("dblclick", e => {
     setClickedPosition([Number(e.latlng.lat.toFixed(4)), Number(e.latlng.lng.toFixed(4))])
     setShow(true)
   })
@@ -32,8 +32,8 @@ const AddPhotosModal = () => {
             <Offcanvas.Title as="h2">Add Photos</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <h4>Clicked Location</h4>
-            <InputGroup className="mb-3">
+            <h5>Clicked Location</h5>
+            <InputGroup size="sm" className="mb-3">
               <InputGroup.Text>Latitude:</InputGroup.Text>
               <FormControl
                 type="number"
@@ -41,7 +41,7 @@ const AddPhotosModal = () => {
                 onChange={(e: ChangeEvent<HTMLInputElement>) => handlePositionChange(e, "lat")}
               />
             </InputGroup>
-            <InputGroup className="mb-3">
+            <InputGroup size="sm" className="mb-3">
               <InputGroup.Text>Longitude:</InputGroup.Text>
               <FormControl
                 type="number"
