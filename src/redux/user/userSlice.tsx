@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../store"
 import { IUserStore } from "../../types/users"
-import { fetchMe } from "../../utils/backend/endpoints"
+import { fetchMe, logoutUser } from "../../utils/backend/endpoints"
 
 const initialState: IUserStore = {
   data: null,
@@ -10,17 +10,14 @@ const initialState: IUserStore = {
 }
 
 export const getUserData = createAsyncThunk("user/getMe", async () => await fetchMe())
+export const logoutUserAction = createAsyncThunk("user/logout", async () => {
+  await logoutUser()
+})
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    logoutAction: state => {
-      state.data = null
-      state.loading = false
-      state.error = ""
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getUserData.pending, state => {
@@ -36,10 +33,16 @@ export const userSlice = createSlice({
         state.error = action.error.message || ""
         state.data = null
       })
+      .addCase(logoutUserAction.pending, state => {
+        state.loading = true
+      })
+      .addCase(logoutUserAction.fulfilled, state => {
+        state.loading = false
+        state.data = null
+        state.error = ""
+      })
   },
 })
-
-export const { logoutAction } = userSlice.actions
 
 export const userDataStore = (state: RootState) => state.user.data
 export const userLoadingStore = (state: RootState) => state.user.loading

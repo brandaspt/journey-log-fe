@@ -4,7 +4,7 @@ import "./Map.css"
 
 const Map = () => {
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} doubleClickZoom={false}>
+    <MapContainer center={[51.505, -0.09]} zoom={3}>
       <LayersControl position="topright">
         <LayersControl.BaseLayer checked name="Smooth Light">
           <TileLayer

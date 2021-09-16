@@ -7,6 +7,7 @@ export interface IUser {
   avatar?: string
   bio?: string
   refreshToken?: string
+  googleId?: string
 }
 
 export interface IUserStore {

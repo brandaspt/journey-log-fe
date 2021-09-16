@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../redux/hooks"
 import { getUserData } from "../../redux/user/userSlice"
 import { loginUser } from "../../utils/backend/endpoints"
+import { FcGoogle } from "react-icons/fc"
 import "./Login.css"
 
 export interface ILoginCredentials {
@@ -27,7 +28,7 @@ const Login = () => {
     try {
       await loginUser(credentials)
       dispatch(getUserData())
-      history.push("/users/map/me")
+      history.push("/dashboard")
     } catch (err) {
       setError("Invalid credentials")
     }
@@ -61,8 +62,14 @@ const Login = () => {
         </Form.Group>
         <div className="d-flex flex-column align-items-center">
           <Button variant="primary" type="submit">
-            Submit
+            Login
           </Button>
+
+          <Button variant="light" as="a" href={`${process.env.REACT_APP_BACKEND_URL}/auth/googleLogin`} className="mt-3 w-100 border">
+            <FcGoogle className="me-3" size={22} />
+            Login with Google
+          </Button>
+
           {error && (
             <Alert className="p-1 mb-0 mt-3" variant="danger">
               {error}

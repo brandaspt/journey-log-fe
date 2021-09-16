@@ -17,3 +17,13 @@ export const loginUser = async (credentials: ILoginCredentials) => {
   const { data }: AxiosResponse = await backend.post("/auth/login", credentials)
   return data
 }
+
+export const googleLogin = async () => {
+  const { data }: AxiosResponse = await backend("/auth/googleLogin")
+  return data
+}
+
+export const logoutUser = async () => {
+  const { data }: AxiosResponse = await backend("/auth/logout")
+  return data
+}

@@ -1,0 +1,16 @@
+.Greeting {
+  text-align: center;
+  margin: 30px 0;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 1s;
+}
+
+.Greeting.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Greeting span {
+  color: coral;
+}
