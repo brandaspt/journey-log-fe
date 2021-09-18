@@ -1,0 +1,32 @@
+.NewPostCanvas .offcanvas-header {
+  background-color: lightgray;
+  padding: 0 10px;
+  height: 65px;
+}
+.NewPostCanvas hr {
+  margin: 22px 0;
+}
+.NewPostCanvas input[type="file"] {
+  display: none;
+}
+.NewPostCanvas button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.NewPostCanvas .btn-success,
+.NewPostCanvas .btn-warning {
+  cursor: auto;
+}
+.NewPostCanvas .remove-photo-btn {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  color: red;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.NewPostCanvas .remove-photo-btn:hover {
+  color: white;
+  background-color: red;
+}

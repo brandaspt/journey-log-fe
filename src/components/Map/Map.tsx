@@ -1,11 +1,11 @@
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet"
-import AddPhotosModal from "../AddPhotosModal/AddPhotosModal"
+import NewPost from "../NewPost/NewPost"
 import "./Map.css"
 
 const Map = () => {
   return (
     <MapContainer center={[51.505, -0.09]} zoom={3}>
-      <LayersControl position="topright">
+      <LayersControl position="topleft">
         <LayersControl.BaseLayer checked name="Smooth Light">
           <TileLayer
             attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -26,7 +26,7 @@ const Map = () => {
         </LayersControl.BaseLayer>
       </LayersControl>
 
-      <AddPhotosModal />
+      <NewPost />
     </MapContainer>
   )
 }

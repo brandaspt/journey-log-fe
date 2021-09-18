@@ -27,7 +27,7 @@ const Greeting = () => {
     getHour()
     const timer = setTimeout(() => {
       setShow(true)
-    }, 100)
+    }, 200)
     return clearTimeout(timer)
   }, [])
 

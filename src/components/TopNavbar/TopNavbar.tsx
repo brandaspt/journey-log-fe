@@ -36,7 +36,7 @@ const TopNavbar = () => {
                     console.log(resp)
                   }}
                 >
-                  Profile
+                  My Profile
                 </NavDropdown.Item>
                 <Link to="/users/map/me">
                   <NavDropdown.Item as="div">My Map</NavDropdown.Item>

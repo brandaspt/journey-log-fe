@@ -27,3 +27,8 @@ export const logoutUser = async () => {
   const { data }: AxiosResponse = await backend("/auth/logout")
   return data
 }
+
+export const newPost = async (formData: FormData) => {
+  const { data }: AxiosResponse = await backend.post("/posts", formData)
+  return data
+}
