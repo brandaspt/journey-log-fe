@@ -2,17 +2,17 @@ import { useEffect } from "react"
 import { Container, Nav, Navbar, NavDropdown, Button, Spinner } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getUserData, logoutUserAction, userDataStore, userLoadingStore } from "../../redux/user/userSlice"
+import { getUserDataAction, logoutUserAction, userProfileStore, userLoadingStore } from "../../redux/user/userSlice"
 import backend from "../../utils/backend/backend"
 import "./TopNavbar.css"
 
 const TopNavbar = () => {
-  const userData = useAppSelector(userDataStore)
+  const userData = useAppSelector(userProfileStore)
   const userLoading = useAppSelector(userLoadingStore)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getUserData())
+    dispatch(getUserDataAction())
   }, [dispatch])
 
   return (
@@ -38,7 +38,7 @@ const TopNavbar = () => {
                 >
                   My Profile
                 </NavDropdown.Item>
-                <Link to="/users/map/me">
+                <Link to={`/users/${userData._id}/map`}>
                   <NavDropdown.Item as="div">My Map</NavDropdown.Item>
                 </Link>
                 <Link to="/dashboard">
@@ -61,7 +61,7 @@ const TopNavbar = () => {
               </NavDropdown>
             ) : (
               <Link to="/login">
-                <Button size="sm" variant="primary">
+                <Button size="sm" variant="warning">
                   Login
                 </Button>
               </Link>

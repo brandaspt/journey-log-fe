@@ -1,10 +1,35 @@
+import { LatLngBounds } from "leaflet"
+import { useEffect, useState } from "react"
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet"
+import { useParams } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { getSelectedUserPostsAction, selectedUserPostsStore } from "../../redux/posts/postsSlice"
+import { getMyPostsAction, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import NewPost from "../NewPost/NewPost"
+import PostMarker from "../PostMarker/PostMarker"
 import "./Map.css"
 
+const maxBounds = new LatLngBounds([-85, -180], [85, 180])
+
 const Map = () => {
+  const [isMe, setIsMe] = useState(false)
+  const userData = useAppSelector(userProfileStore)
+  const myPosts = useAppSelector(userMyPostsStore)
+  const selectedUserPosts = useAppSelector(selectedUserPostsStore)
+  const dispatch = useAppDispatch()
+  const params = useParams<{ userId: string }>()
+
+  useEffect(() => {
+    setIsMe(params.userId === userData?._id)
+  }, [userData?._id, params.userId])
+
+  useEffect(() => {
+    if (isMe) dispatch(getMyPostsAction())
+    else dispatch(getSelectedUserPostsAction(params.userId))
+  }, [dispatch, params.userId, isMe])
+
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={3}>
+    <MapContainer center={[11.178, 10.898]} zoom={3} minZoom={2} maxBounds={maxBounds}>
       <LayersControl position="topleft">
         <LayersControl.BaseLayer checked name="Smooth Light">
           <TileLayer
@@ -26,7 +51,11 @@ const Map = () => {
         </LayersControl.BaseLayer>
       </LayersControl>
 
-      <NewPost />
+      {isMe && <NewPost />}
+
+      {isMe
+        ? myPosts.map(post => <PostMarker key={post._id} post={post} />)
+        : selectedUserPosts.map(post => <PostMarker key={post._id} post={post} />)}
     </MapContainer>
   )
 }

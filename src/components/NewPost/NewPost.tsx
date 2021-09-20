@@ -1,18 +1,21 @@
 import { LatLngTuple } from "leaflet"
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
-import { FormControl, InputGroup, Offcanvas, Button, Spinner } from "react-bootstrap"
+import { FormControl, InputGroup, Offcanvas, Button, Spinner, Form } from "react-bootstrap"
 import { FiUpload } from "react-icons/fi"
 import { MdAddAPhoto, MdRemoveCircle } from "react-icons/md"
 import { FaCheck } from "react-icons/fa"
 import { Marker, useMap, useMapEvent } from "react-leaflet"
-import { IPostPhotosArray } from "../../types/newPost"
+import { IPostPhotosArray } from "../../types/posts"
 import { newPost } from "../../utils/backend/endpoints"
 import { createBlobURLs, getAddressFromCoords } from "../../utils/helpers/helpers"
 import "./NewPost.css"
+import { useAppDispatch } from "../../redux/hooks"
+import { getMyPostsAction } from "../../redux/user/userSlice"
 
 const NewPost = () => {
   const [currentLocation, setcurrentLocation] = useState<LatLngTuple | null>(null)
   const [address, setAddress] = useState({ level2: "", level1: "", country: "" })
+  const [isPrivate, setIsPrivate] = useState(false)
   const [isLoadingPhotos, setIsLoadingPhotos] = useState(false)
   const [isLoadingNewPost, setIsLoadingNewPost] = useState(false)
   const [newPostStatus, setNewPostStatus] = useState("")
@@ -21,11 +24,12 @@ const NewPost = () => {
   const [selectedPhotos, setSelectedPhotos] = useState<IPostPhotosArray>([])
   const [show, setShow] = useState(false)
 
+  const dispatch = useAppDispatch()
+
   const fileRef = useRef<HTMLInputElement>(null)
 
   const handleClose = () => {
-    setAddress({ level2: "", level1: "", country: "" })
-    setShow(false)
+    resetForm()
   }
 
   let _dblClickTimer: NodeJS.Timeout | null = null
@@ -37,9 +41,9 @@ const NewPost = () => {
       return
     }
     _dblClickTimer = setTimeout(() => {
+      // real 'click' event handler here
       const lat = Number(e.latlng.lat.toFixed(4))
       const lng = Number(e.latlng.lng.toFixed(4))
-      // real 'click' event handler here
       setcurrentLocation([lat, lng])
       setShow(true)
       _dblClickTimer = null
@@ -62,6 +66,7 @@ const NewPost = () => {
     setPostTitle("")
     setPostDescription("")
     setSelectedPhotos([])
+    setIsPrivate(false)
     setShow(false)
   }
 
@@ -95,6 +100,7 @@ const NewPost = () => {
     formData.append("lng", currentLocation![1].toString())
     formData.append("title", postTitle)
     formData.append("description", postDescription)
+    formData.append("isPrivate", isPrivate ? "true" : "")
     try {
       setIsLoadingNewPost(true)
       await newPost(formData)
@@ -102,7 +108,8 @@ const NewPost = () => {
       setNewPostStatus("created")
       setTimeout(() => {
         resetForm()
-      }, 3000)
+        dispatch(getMyPostsAction())
+      }, 2000)
     } catch (error) {
       setIsLoadingNewPost(false)
       console.log(error)
@@ -163,6 +170,16 @@ const NewPost = () => {
               <InputGroup.Text>Description:</InputGroup.Text>
               <FormControl as="textarea" value={postDescription} onChange={e => setPostDescription(e.target.value)} />
             </InputGroup>
+            <div className="d-flex align-items-center justify-content-center">
+              <div className={!isPrivate ? `m-0 fw-bold text-end` : `m-0 text-muted text-end`} style={{ width: "55px" }}>
+                Public
+              </div>
+              <Form.Check type="switch" className="ms-3 me-2" checked={isPrivate} onChange={e => setIsPrivate(e.target.checked)} />
+              <div className={isPrivate ? `m-0 fw-bold text-start` : `m-0 text-muted text-start`} style={{ width: "55px" }}>
+                Private
+              </div>
+            </div>
+
             <hr />
             <h5 className="fw-bold">Photos</h5>
             <input type="file" ref={fileRef} multiple onChange={handleSelectedPhotos} />
@@ -178,7 +195,7 @@ const NewPost = () => {
             {isLoadingPhotos && (
               <div className="text-center mt-3">
                 <Spinner animation="border" />
-                <p className="text-muted">Admiring your amazing photos...</p>
+                <p className="text-muted">Admiring your amazing photos... 👀</p>
               </div>
             )}
             <div className="d-flex justify-content-center flex-wrap">
@@ -200,7 +217,7 @@ const NewPost = () => {
               </Button>
             ) : isLoadingNewPost ? (
               <Button className="rounded-0 d-flex align-items-center justify-content-center" variant="warning" size="lg">
-                Chewing your photos...
+                Chewing your photos... 😋
               </Button>
             ) : (
               <Button className="rounded-0 d-flex align-items-center justify-content-center" size="lg" onClick={handleSubmitPost}>

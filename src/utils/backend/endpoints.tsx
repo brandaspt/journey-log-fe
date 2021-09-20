@@ -32,3 +32,13 @@ export const newPost = async (formData: FormData) => {
   const { data }: AxiosResponse = await backend.post("/posts", formData)
   return data
 }
+
+export const fetchMyPosts = async () => {
+  const { data }: AxiosResponse = await backend(`/posts/me`)
+  return data
+}
+
+export const fetchSelectedUserPosts = async (userId: string) => {
+  const { data }: AxiosResponse = await backend(`/posts/${userId}`)
+  return data
+}

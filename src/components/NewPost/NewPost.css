@@ -3,9 +3,16 @@
   padding: 0 10px;
   height: 65px;
 }
+
 .NewPostCanvas hr {
   margin: 22px 0;
 }
+
+.NewPostCanvas .form-switch input {
+  box-shadow: none;
+  outline: none;
+}
+
 .NewPostCanvas input[type="file"] {
   display: none;
 }

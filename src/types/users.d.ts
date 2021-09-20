@@ -1,3 +1,5 @@
+import { IPost } from "./posts"
+
 export interface IUser {
   name: string
   surname: string
@@ -11,7 +13,8 @@ export interface IUser {
 }
 
 export interface IUserStore {
-  data: IUser | null
+  profile: IUser | null
+  myPosts: IPost[]
   loading: boolean
   error: string
 }

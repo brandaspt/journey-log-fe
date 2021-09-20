@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { useAppSelector } from "../../redux/hooks"
-import { userDataStore } from "../../redux/user/userSlice"
+import { userProfileStore } from "../../redux/user/userSlice"
 import "./Greeting.css"
 
 const Greeting = () => {
   const [hour, setHour] = useState<number | null>(null)
   const [show, setShow] = useState(false)
-  const userData = useAppSelector(userDataStore)
+  const userData = useAppSelector(userProfileStore)
 
   const getHour = () => {
     const date = new Date()
@@ -28,7 +28,7 @@ const Greeting = () => {
     const timer = setTimeout(() => {
       setShow(true)
     }, 200)
-    return clearTimeout(timer)
+    return () => clearTimeout(timer)
   }, [])
 
   return (

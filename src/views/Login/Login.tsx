@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react"
 import { Form, Button, Alert } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../redux/hooks"
-import { getUserData } from "../../redux/user/userSlice"
+import { getUserDataAction } from "../../redux/user/userSlice"
 import { loginUser } from "../../utils/backend/endpoints"
 import { FcGoogle } from "react-icons/fc"
 import "./Login.css"
@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault()
     try {
       await loginUser(credentials)
-      dispatch(getUserData())
+      dispatch(getUserDataAction())
       history.push("/dashboard")
     } catch (err) {
       setError("Invalid credentials")

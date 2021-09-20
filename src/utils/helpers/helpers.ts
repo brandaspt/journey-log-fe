@@ -1,6 +1,6 @@
 import { IGeocodingResponse } from "../../types/geocoding"
 import heic2any from "heic2any"
-import { IPostPhotosArray } from "../../types/newPost"
+import { IPostPhotosArray } from "../../types/posts"
 
 export const getAddressFromCoords = async (lat: number, long: number) => {
   const resp = await fetch(
@@ -8,7 +8,6 @@ export const getAddressFromCoords = async (lat: number, long: number) => {
       .REACT_APP_GOOGLE_GEOCODING_API_KEY!}&result_type=country|administrative_area_level_1|administrative_area_level_2`
   )
   const body: IGeocodingResponse = await resp.json()
-  console.log(body.results[0])
 
   const address = { level2: "", level1: "", country: "" }
 
@@ -28,9 +27,9 @@ export const createBlobURLs = async (files: FileList) => {
 
   for (let i = 0; i < files.length; i++) {
     if (files[i].type.includes("heic")) {
-      const jpeg = await heic2any({ blob: files[i], toType: "image/jpeg" })
+      const jpeg = (await heic2any({ blob: files[i], toType: "image/jpeg" })) as Blob
       urlArr.push({
-        photoFile: files[i],
+        photoFile: jpeg,
         blobURL: URL.createObjectURL(jpeg),
       })
     } else

@@ -1,0 +1,43 @@
+.PostMarker .marker-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background: #c30b82;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+}
+.PostMarker .marker-pin::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  margin: 3px 0 0 3px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+}
+.PostMarker img {
+  height: 24px;
+  width: 24px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 9px auto;
+  text-align: center;
+}
+.post-card {
+  width: 200px;
+}
+.post-card .card-body {
+  padding: 0;
+}
+
+.post-card img {
+  width: 200px;
+  height: 300px;
+  object-fit: scale-down;
+}
