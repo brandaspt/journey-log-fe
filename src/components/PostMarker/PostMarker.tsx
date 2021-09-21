@@ -1,5 +1,5 @@
 import { divIcon } from "leaflet"
-import { Card, Button, Carousel } from "react-bootstrap"
+import { Card, Button, Carousel, Row, Col } from "react-bootstrap"
 import { Marker, Popup, Tooltip } from "react-leaflet"
 import { AiFillLike } from "react-icons/ai"
 import { Link } from "react-router-dom"
@@ -33,23 +33,24 @@ const PostMarker = ({ post }: IPostMarkerProps) => {
       </Tooltip>
       <Popup className="post-popup">
         <Card className="border-0 post-card">
-          <Carousel>
+          <div className="photos-wrapper">
             {post.photos.map(photo => (
-              <Carousel.Item className="text-center">
-                <img src={photo.url} alt="post item" />
-              </Carousel.Item>
+              <img src={photo.url} alt="post item" />
             ))}
-          </Carousel>
-          <Card.Body className="px-3 mt-3">
+          </div>
+
+          <Card.Body className="mt-3">
             <div className="d-flex justify-content-between align-items-center">
               <div className="d-flex flex-column">
                 <Card.Title>{post.title}</Card.Title>
-                <Card.Text>
+                <Card.Text as="div">
                   by{" "}
                   <Link to={`/users/${post.userId._id}/map`}>
                     {post.userId.name} {post.userId.surname}
                   </Link>
-                  , <TimeAgo datetime={post.createdAt} />
+                  <p className="m-0">
+                    <TimeAgo datetime={post.createdAt} />
+                  </p>
                 </Card.Text>
               </div>
               <AiFillLike size={28} color="coral" />
@@ -57,8 +58,8 @@ const PostMarker = ({ post }: IPostMarkerProps) => {
             <hr />
             {post.description && (
               <>
-                <Card.Text className="fw-bold">Description</Card.Text>
-                <Card.Text>{post.description}</Card.Text>
+                <Card.Text className="fw-bold mb-1">Description</Card.Text>
+                <Card.Text className="post-description">{post.description}</Card.Text>
                 <hr />
               </>
             )}
