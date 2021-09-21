@@ -5,7 +5,10 @@
   transform: translateY(-100%);
   transition: all 1s;
 }
-
+h3.Greeting {
+  margin: 0;
+  padding: 25px 0;
+}
 .Greeting.show {
   opacity: 1;
   transform: translateY(0);

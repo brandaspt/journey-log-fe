@@ -1,8 +1,11 @@
 .TopNavbar {
   height: 65px;
-  background-color: teal;
+  background-color: rgb(242, 242, 242);
 }
-
+.TopNavbar.navbar {
+  height: 65px;
+  box-shadow: 0 0 5px black;
+}
 .TopNavbar .avatar {
   height: 38px;
   width: 38px;
@@ -16,7 +19,13 @@
 }
 
 .TopNavbar .dropdown-menu.show {
+  margin-top: 5px;
+  right: -12px;
   padding-bottom: 0;
+}
+.TopNavbar .btn-danger {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .TopNavbar a {

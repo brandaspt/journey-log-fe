@@ -1,3 +1,4 @@
+import { IMongoDoc } from "./mongo"
 import { IUser } from "./users"
 
 interface IPostPhoto {
@@ -7,12 +8,11 @@ interface IPostPhoto {
 
 export type IPostPhotosArray = IPostPhoto[]
 
-export interface IPost {
+export interface IPost extends IMongoDoc {
   title: string
   likes?: Schema.Types.ObjectId[]
   photos: Schema.Types.ObjectId[]
   isPrivate: boolean
-  _id: Schema.Types.ObjectId
   lat: number
   lng: number
   userId: Schema.Types.ObjectId | IUser

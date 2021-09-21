@@ -1,10 +1,10 @@
+import { IMongoDoc } from "./mongo"
 import { IPost } from "./posts"
 
-export interface IUser {
+export interface IUser extends IMongoDoc {
   name: string
   surname: string
   email: string
-  _id: string
   password?: string
   avatar?: string
   bio?: string
