@@ -126,7 +126,7 @@ const NewPost = () => {
     currentLocation && (
       <>
         <Marker position={currentLocation}></Marker>
-        <Offcanvas show={show} onHide={handleClose} placement="end" style={{ width: "35vw" }} className="NewPostCanvas">
+        <Offcanvas show={show} onHide={handleClose} placement="end" className="NewPostCanvas">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title as="h2" className="text-center w-100">
               New Post
@@ -198,10 +198,10 @@ const NewPost = () => {
                 <p className="text-muted">Admiring your amazing photos... 👀</p>
               </div>
             )}
-            <div className="d-flex justify-content-center flex-wrap">
+            <div className="d-flex justify-content-center flex-wrap photos-container">
               {selectedPhotos.map((photo, idx) => (
                 <div key={idx} className="position-relative mt-3 mx-1">
-                  <img src={photo.blobURL} alt="thumbnail" height="150px" />
+                  <img src={photo.blobURL} alt="thumbnail" />
 
                   <MdRemoveCircle size={20} className="remove-photo-btn" onClick={() => handleRemovePhoto(idx)} />
                 </div>

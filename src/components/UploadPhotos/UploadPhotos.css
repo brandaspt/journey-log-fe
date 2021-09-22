@@ -1,7 +1,8 @@
 .UploadPhotos {
   position: absolute;
   top: 5px;
-  right: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 400;
 }
 .UploadPhotos .btn {
@@ -14,4 +15,35 @@
 }
 .UploadPhotos .btn-warning:hover {
   opacity: 1;
+}
+.UploadPhotos input[type="file"] {
+  display: none;
+}
+
+.UploadPhotosCanvas .btn-success,
+.UploadPhotosCanvas .btn-warning {
+  cursor: auto !important;
+}
+
+.UploadPhotosCanvas .offcanvas-header {
+  background-color: lightgray;
+  padding: 0 10px;
+  height: 65px;
+}
+.UploadPhotosCanvas .remove-photo-btn {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  color: red;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.UploadPhotosCanvas .remove-photo-btn:hover {
+  color: white;
+  background-color: red;
+}
+.UploadPhotosCanvas button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }

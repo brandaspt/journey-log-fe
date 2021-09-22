@@ -1,5 +1,6 @@
 import { IGeocodingResponse } from "../../types/geocoding"
 import heic2any from "heic2any"
+import exifr from "exifr"
 import { IPostPhotosArray } from "../../types/posts"
 
 export const getAddressFromCoords = async (lat: number, long: number) => {
@@ -39,4 +40,10 @@ export const createBlobURLs = async (files: FileList) => {
       })
   }
   return urlArr
+}
+
+export const getPhotoCoords = async (files: FileList) => {
+  const filesArr = Array.from(files)
+  const exifs = await Promise.all(filesArr.map(file => exifr.gps(file)))
+  return exifs
 }

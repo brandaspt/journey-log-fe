@@ -12,6 +12,9 @@
   box-shadow: none;
   outline: none;
 }
+.NewPostCanvas .photos-container img {
+  max-height: 150px;
+}
 
 .NewPostCanvas input[type="file"] {
   display: none;

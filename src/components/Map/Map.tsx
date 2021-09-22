@@ -1,11 +1,11 @@
 import { LatLngBounds } from "leaflet"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-markercluster"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getSelectedUserPostsAction, selectedUserPostsStore } from "../../redux/posts/postsSlice"
-import { getMyPostsAction, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
+import { userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import MapLegend from "../MapLegend/MapLegend"
 import NewPost from "../NewPost/NewPost"
 import PostMarker from "../PostMarker/PostMarker"
@@ -15,25 +15,21 @@ import "./Map.css"
 const maxBounds = new LatLngBounds([-85, -180], [85, 180])
 
 const Map = () => {
-  const [isMe, setIsMe] = useState(false)
   const userData = useAppSelector(userProfileStore)
   const myPosts = useAppSelector(userMyPostsStore)
   const selectedUserPosts = useAppSelector(selectedUserPostsStore)
   const dispatch = useAppDispatch()
+
   const params = useParams<{ userId: string }>()
+  const isMe = params.userId === userData?._id
 
   useEffect(() => {
-    setIsMe(params.userId === userData?._id)
-  }, [userData?._id, params.userId])
-
-  useEffect(() => {
-    if (isMe) dispatch(getMyPostsAction())
-    else dispatch(getSelectedUserPostsAction(params.userId))
+    if (!isMe) dispatch(getSelectedUserPostsAction(params.userId))
   }, [dispatch, params.userId, isMe])
 
   return (
     <div className="position-relative">
-      <MapContainer center={[11.178, 10.898]} zoom={3} minZoom={2} maxBounds={maxBounds}>
+      <MapContainer center={[30.178, 10.898]} zoom={2.5} minZoom={2} maxBounds={maxBounds}>
         <LayersControl position="topleft">
           <LayersControl.BaseLayer checked name="Smooth Light">
             <TileLayer
@@ -57,19 +53,11 @@ const Map = () => {
 
         {isMe && <NewPost />}
 
-        {isMe ? (
-          <MarkerClusterGroup>
-            {myPosts.map(post => (
-              <PostMarker key={post._id} post={post} />
-            ))}
-          </MarkerClusterGroup>
-        ) : (
-          <MarkerClusterGroup>
-            {selectedUserPosts.map(post => (
-              <PostMarker key={post._id} post={post} />
-            ))}
-          </MarkerClusterGroup>
-        )}
+        <MarkerClusterGroup>
+          {isMe
+            ? myPosts.map(post => <PostMarker key={post._id} post={post} />)
+            : selectedUserPosts.map(post => <PostMarker key={post._id} post={post} />)}
+        </MarkerClusterGroup>
       </MapContainer>
       {isMe && <UploadPhotos />}
       {isMe && <MapLegend />}
