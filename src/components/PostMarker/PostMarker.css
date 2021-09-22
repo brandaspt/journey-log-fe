@@ -2,14 +2,13 @@
   width: 30px;
   height: 30px;
   border-radius: 50% 50% 50% 0;
-  background: #c30b82;
   position: absolute;
   transform: rotate(-45deg);
   left: 50%;
   top: 50%;
   margin: -15px 0 0 -15px;
 }
-.PostMarker .marker-pin::after {
+/* .PostMarker .marker-pin::after {
   content: "";
   width: 24px;
   height: 24px;
@@ -17,7 +16,7 @@
   background: #fff;
   position: absolute;
   border-radius: 50%;
-}
+} */
 .PostMarker img {
   height: 24px;
   width: 24px;
@@ -42,6 +41,12 @@
   max-height: 250px;
   overflow-y: scroll;
   /* box-shadow: 0px 4px 2px #888, 0px -4px 2px #888; */
+  border-radius: 5px;
+}
+.post-card .single-photo-wrapper {
+  text-align: center;
+}
+.post-card .single-photo-wrapper img {
   border-radius: 5px;
 }
 .post-card img {

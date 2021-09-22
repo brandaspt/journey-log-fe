@@ -217,7 +217,10 @@ const NewPost = () => {
               </Button>
             ) : isLoadingNewPost ? (
               <Button className="rounded-0 d-flex align-items-center justify-content-center" variant="warning" size="lg">
-                Chewing your photos... 😋
+                <p className="m-0">Chewing your post...</p>
+                <div className="ms-4">
+                  <Spinner animation="border" size="sm"></Spinner>
+                </div>
               </Button>
             ) : (
               <Button className="rounded-0 d-flex align-items-center justify-content-center" size="lg" onClick={handleSubmitPost}>

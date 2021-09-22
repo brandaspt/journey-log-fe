@@ -1,10 +1,12 @@
 import { LatLngBounds } from "leaflet"
 import { useEffect, useState } from "react"
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet"
+import MarkerClusterGroup from "react-leaflet-markercluster"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getSelectedUserPostsAction, selectedUserPostsStore } from "../../redux/posts/postsSlice"
 import { getMyPostsAction, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
+import MapLegend from "../MapLegend/MapLegend"
 import NewPost from "../NewPost/NewPost"
 import PostMarker from "../PostMarker/PostMarker"
 import UploadPhotos from "../UploadPhotos/UploadPhotos"
@@ -55,11 +57,22 @@ const Map = () => {
 
         {isMe && <NewPost />}
 
-        {isMe
-          ? myPosts.map(post => <PostMarker key={post._id} post={post} />)
-          : selectedUserPosts.map(post => <PostMarker key={post._id} post={post} />)}
+        {isMe ? (
+          <MarkerClusterGroup>
+            {myPosts.map(post => (
+              <PostMarker key={post._id} post={post} />
+            ))}
+          </MarkerClusterGroup>
+        ) : (
+          <MarkerClusterGroup>
+            {selectedUserPosts.map(post => (
+              <PostMarker key={post._id} post={post} />
+            ))}
+          </MarkerClusterGroup>
+        )}
       </MapContainer>
       {isMe && <UploadPhotos />}
+      {isMe && <MapLegend />}
     </div>
   )
 }

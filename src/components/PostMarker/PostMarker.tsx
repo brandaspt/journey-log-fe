@@ -1,5 +1,5 @@
 import { divIcon } from "leaflet"
-import { Card, Button, Carousel, Row, Col } from "react-bootstrap"
+import { Card, Button } from "react-bootstrap"
 import { Marker, Popup, Tooltip } from "react-leaflet"
 import { AiFillLike } from "react-icons/ai"
 import { Link } from "react-router-dom"
@@ -29,19 +29,26 @@ const PostMarker = ({ post }: IPostMarkerProps) => {
       })}
     >
       <Tooltip direction="top">
-        <h6>Post: {post.title}</h6>
+        <h6 className="m-0">{post.title}</h6>
+        <p className="m-0">{post.photos.length > 1 ? `${post.photos.length} photos` : `${post.photos.length} photo`}</p>
       </Tooltip>
       <Popup className="post-popup">
         <Card className="border-0 post-card">
-          <div className="photos-wrapper">
-            {post.photos.map(photo => (
-              <img src={photo.url} alt="post item" />
-            ))}
-          </div>
+          {post.photos.length > 1 ? (
+            <div className="photos-wrapper">
+              {post.photos.map(photo => (
+                <img src={photo.url} alt="post item" />
+              ))}
+            </div>
+          ) : (
+            <div className="single-photo-wrapper">
+              <img src={post.photos[0].url} alt="post item" />
+            </div>
+          )}
 
           <Card.Body className="mt-3">
             <div className="d-flex justify-content-between align-items-center">
-              <div className="d-flex flex-column">
+              <div className="d-flex flex-column me-3">
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text as="div">
                   by{" "}
