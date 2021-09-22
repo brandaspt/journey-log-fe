@@ -14,6 +14,13 @@
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
 }
+
+.MapLegend .marker-pin.private {
+  background-color: rgb(120, 72, 15);
+}
+.MapLegend .marker-pin.public {
+  background-color: darkorange;
+}
 .MapLegend p {
   font-size: 14px;
   margin: 0 0 0 10px;

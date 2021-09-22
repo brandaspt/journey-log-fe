@@ -13,16 +13,17 @@
   width: 24px;
   height: 24px;
   margin: 3px 0 0 3px;
-  background: #fff;
   position: absolute;
   border-radius: 50%;
+  background: #fff;
 } */
-.PostMarker img {
-  height: 24px;
-  width: 24px;
+.PostMarker i {
+  font-size: 18px;
   object-fit: cover;
   border-radius: 50%;
+  color: white;
   position: absolute;
+  top: 2px;
   left: 0;
   right: 0;
   margin: 9px auto;

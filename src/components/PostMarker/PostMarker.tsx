@@ -20,8 +20,8 @@ const PostMarker = ({ post }: IPostMarkerProps) => {
       icon={divIcon({
         className: "PostMarker",
         html: `<div style='${
-          post.isPrivate ? "background-color:#c30b82;" : "background-color:#005eff;"
-        }' class='marker-pin'></div><img src="${post.userId.avatar}"/>`,
+          post.isPrivate ? "background-color:rgb(120, 72, 15)" : "background-color:rgb(255, 140, 0);"
+        }' class='marker-pin'></div><i class="fas fa-anchor"></i>`,
         iconSize: [30, 42],
         iconAnchor: [15, 42],
         popupAnchor: [0, -30],
@@ -37,7 +37,7 @@ const PostMarker = ({ post }: IPostMarkerProps) => {
           {post.photos.length > 1 ? (
             <div className="photos-wrapper">
               {post.photos.map(photo => (
-                <img src={photo.url} alt="post item" />
+                <img key={photo.url} src={photo.url} alt="post item" />
               ))}
             </div>
           ) : (
