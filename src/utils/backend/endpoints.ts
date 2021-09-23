@@ -42,6 +42,15 @@ export const fetchSelectedUserPosts = async (userId: string) => {
   const { data }: AxiosResponse = await backend(`/posts/${userId}`)
   return data
 }
+
+export const fetchMyPhotos = async () => {
+  const { data }: AxiosResponse = await backend(`/photos/me`)
+  return data
+}
+export const fetchSelectedUserPhotos = async (userId: string) => {
+  const { data }: AxiosResponse = await backend(`/photos/${userId}`)
+  return data
+}
 export const uploadPhotos = async (formData: FormData) => {
   const { data }: AxiosResponse = await backend.post(`/photos`, formData)
   return data

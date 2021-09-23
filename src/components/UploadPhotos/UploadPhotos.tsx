@@ -1,9 +1,11 @@
-import { ChangeEvent, useRef, useState } from "react"
+import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { Button, Form, Offcanvas, Spinner } from "react-bootstrap"
 import { AiOutlineUpload } from "react-icons/ai"
 import { FaCheck } from "react-icons/fa"
 import { FiUpload } from "react-icons/fi"
 import { MdAddAPhoto, MdRemoveCircle } from "react-icons/md"
+import { useAppDispatch } from "../../redux/hooks"
+import { getMyPhotosAction } from "../../redux/user/userSlice"
 import { uploadPhotos } from "../../utils/backend/endpoints"
 import { createBlobURLs, getPhotoCoords } from "../../utils/helpers/helpers"
 import "./UploadPhotos.css"
@@ -18,10 +20,13 @@ interface INewPhoto {
 
 const UploadPhotos = () => {
   const [show, setShow] = useState(false)
+  const [privacy, setPrivacy] = useState<"allPublic" | "allPrivate" | "custom">("allPublic")
   const [selectedPhotos, setSelectedPhotos] = useState<INewPhoto[]>([])
   const [isLoadingPhotos, setIsLoadingPhotos] = useState(false)
   const [isLoadingUpload, setIsLoadingUpload] = useState(false)
   const [uploadStatus, setUploadStatus] = useState("")
+
+  const dispatch = useAppDispatch()
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -71,13 +76,42 @@ const UploadPhotos = () => {
       setUploadStatus("created")
       setTimeout(() => {
         resetForm()
-        //   dispatch(getMyPostsAction())
+        dispatch(getMyPhotosAction())
       }, 2000)
     } catch (error) {
       setIsLoadingUpload(false)
       console.log(error)
     }
   }
+
+  const handlePublicChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      const copyArr = [...selectedPhotos]
+      copyArr.forEach(photo => (photo.isPrivate = false))
+      setSelectedPhotos(copyArr)
+      setPrivacy("allPublic")
+    }
+  }
+  const handlePrivateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      const copyArr = [...selectedPhotos]
+      copyArr.forEach(photo => (photo.isPrivate = true))
+      setSelectedPhotos(copyArr)
+      setPrivacy("allPrivate")
+    }
+  }
+
+  const handleSetPhotoPrivate = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
+    const copyArr = [...selectedPhotos]
+    copyArr[idx].isPrivate = e.target.checked
+    setSelectedPhotos(copyArr)
+  }
+
+  useEffect(() => {
+    if (!selectedPhotos.find(photo => photo.isPrivate)) setPrivacy("allPublic")
+    else if (!selectedPhotos.find(photo => !photo.isPrivate)) setPrivacy("allPrivate")
+    else setPrivacy("custom")
+  }, [selectedPhotos])
 
   return (
     <div className="UploadPhotos">
@@ -101,7 +135,21 @@ const UploadPhotos = () => {
             <MdAddAPhoto className="me-3" size={20} />
             Select Photos
           </Button>
-
+          <Form.Check
+            type={"radio"}
+            name="privacy-checkbox"
+            label={"All Public"}
+            checked={privacy === "allPublic"}
+            onChange={handlePublicChange}
+          />
+          <Form.Check
+            type={"radio"}
+            name="privacy-checkbox"
+            label={"All Private"}
+            checked={privacy === "allPrivate"}
+            onChange={handlePrivateChange}
+          />
+          <Form.Check type={"radio"} name="privacy-checkbox" label={"Custom"} checked={privacy === "custom"} disabled />
           {isLoadingPhotos && (
             <div className="text-center mt-3">
               <Spinner animation="border" />
@@ -112,7 +160,15 @@ const UploadPhotos = () => {
             {selectedPhotos.map((photo, idx) => (
               <div key={idx} className="position-relative mt-3 mx-1">
                 <img src={photo.blobURL} alt="thumbnail" height="150px" />
-
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className={!photo.isPrivate ? `m-0 fw-bold text-end` : `m-0 text-muted text-end`} style={{ width: "55px" }}>
+                    Public
+                  </div>
+                  <Form.Check type="switch" className="ms-3 me-2" checked={photo.isPrivate} onChange={e => handleSetPhotoPrivate(e, idx)} />
+                  <div className={photo.isPrivate ? `m-0 fw-bold text-start` : `m-0 text-muted text-start`} style={{ width: "55px" }}>
+                    Private
+                  </div>
+                </div>
                 <MdRemoveCircle size={20} className="remove-photo-btn" onClick={() => handleRemovePhoto(idx)} />
               </div>
             ))}

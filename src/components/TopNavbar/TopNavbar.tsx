@@ -2,7 +2,14 @@ import { useEffect } from "react"
 import { Container, Nav, Navbar, NavDropdown, Button, Spinner } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getUserDataAction, logoutUserAction, userProfileStore, userLoadingStore, getMyPostsAction } from "../../redux/user/userSlice"
+import {
+  getUserDataAction,
+  logoutUserAction,
+  userProfileStore,
+  userLoadingStore,
+  getMyPostsAction,
+  getMyPhotosAction,
+} from "../../redux/user/userSlice"
 import backend from "../../utils/backend/backend"
 import "./TopNavbar.css"
 
@@ -14,6 +21,7 @@ const TopNavbar = () => {
   useEffect(() => {
     dispatch(getUserDataAction())
     dispatch(getMyPostsAction())
+    dispatch(getMyPhotosAction())
   }, [dispatch])
 
   return (

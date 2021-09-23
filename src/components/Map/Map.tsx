@@ -5,26 +5,30 @@ import MarkerClusterGroup from "react-leaflet-markercluster"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getSelectedUserPostsAction, selectedUserPostsStore } from "../../redux/posts/postsSlice"
-import { userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
+import { userMyPhotosStore, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import MapLegend from "../MapLegend/MapLegend"
 import NewPost from "../NewPost/NewPost"
-import PostMarker from "../PostMarker/PostMarker"
+import MapMarker from "../MapMarker/MapMarker"
 import UploadPhotos from "../UploadPhotos/UploadPhotos"
 import "./Map.css"
+import { getSelectedUserPhotosAction, selectedUserPhotosStore } from "../../redux/photos/photosSlice"
 
 const maxBounds = new LatLngBounds([-85, -180], [85, 180])
 
 const Map = () => {
   const userData = useAppSelector(userProfileStore)
   const myPosts = useAppSelector(userMyPostsStore)
+  const myPhotos = useAppSelector(userMyPhotosStore)
   const selectedUserPosts = useAppSelector(selectedUserPostsStore)
+  const selectedUserPhotos = useAppSelector(selectedUserPhotosStore)
   const dispatch = useAppDispatch()
 
   const params = useParams<{ userId: string }>()
   const isMe = params.userId === userData?._id
 
   useEffect(() => {
-    if (!isMe) dispatch(getSelectedUserPostsAction(params.userId))
+    dispatch(getSelectedUserPostsAction(params.userId))
+    dispatch(getSelectedUserPhotosAction(params.userId))
   }, [dispatch, params.userId, isMe])
 
   return (
@@ -53,10 +57,13 @@ const Map = () => {
 
         {isMe && <NewPost />}
 
-        <MarkerClusterGroup>
+        <MarkerClusterGroup maxClusterRadius={40}>
           {isMe
-            ? myPosts.map(post => <PostMarker key={post._id} post={post} />)
-            : selectedUserPosts.map(post => <PostMarker key={post._id} post={post} />)}
+            ? myPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)
+            : selectedUserPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)}
+          {isMe
+            ? myPhotos.map(photo => <MapMarker key={photo._id} content={photo} type="photo" />)
+            : selectedUserPhotos.map(photo => <MapMarker key={photo._id} content={photo} type="photo" />)}
         </MarkerClusterGroup>
       </MapContainer>
       {isMe && <UploadPhotos />}

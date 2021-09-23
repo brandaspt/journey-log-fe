@@ -1,4 +1,5 @@
 import { IMongoDoc } from "./mongo"
+import { IPhoto } from "./photos"
 import { IPost } from "./posts"
 
 export interface IUser extends IMongoDoc {
@@ -15,6 +16,7 @@ export interface IUser extends IMongoDoc {
 export interface IUserStore {
   profile: IUser | null
   myPosts: IPost[]
+  myPhotos: IPhoto[]
   loading: boolean
   error: string
 }

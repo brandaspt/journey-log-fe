@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../store"
 import { IUserStore } from "../../types/users"
-import { fetchMe, fetchMyPosts, logoutUser } from "../../utils/backend/endpoints"
+import { fetchMe, fetchMyPhotos, fetchMyPosts, logoutUser } from "../../utils/backend/endpoints"
 
 const initialState: IUserStore = {
   profile: null,
   myPosts: [],
+  myPhotos: [],
   loading: false,
   error: "",
 }
 
 export const getUserDataAction = createAsyncThunk("user/fetchMe", async () => await fetchMe())
 export const getMyPostsAction = createAsyncThunk("posts/fetchMyPosts", async () => await fetchMyPosts())
+export const getMyPhotosAction = createAsyncThunk("posts/fetchMyPhotos", async () => await fetchMyPhotos())
 export const logoutUserAction = createAsyncThunk("user/logout", async () => await logoutUser())
 
 export const userSlice = createSlice({
@@ -40,6 +42,13 @@ export const userSlice = createSlice({
         state.loading = false
         state.myPosts = action.payload
       })
+      .addCase(getMyPhotosAction.pending, state => {
+        state.loading = true
+      })
+      .addCase(getMyPhotosAction.fulfilled, (state, action) => {
+        state.loading = false
+        state.myPhotos = action.payload
+      })
       .addCase(logoutUserAction.pending, state => {
         state.loading = true
       })
@@ -54,6 +63,7 @@ export const userSlice = createSlice({
 
 export const userProfileStore = (state: RootState) => state.user.profile
 export const userMyPostsStore = (state: RootState) => state.user.myPosts
+export const userMyPhotosStore = (state: RootState) => state.user.myPhotos
 export const userLoadingStore = (state: RootState) => state.user.loading
 export const userErrorStore = (state: RootState) => state.user.error
 

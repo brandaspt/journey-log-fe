@@ -7,10 +7,14 @@
 }
 
 .Login form {
-  padding: 20px 40px;
+  padding: 20px 30px;
   border: 1px solid lightgray;
   border-radius: 10px;
   box-shadow: 0 0 5px gray;
+}
+
+.Login .form-label {
+  margin-bottom: 2px;
 }
 
 .Login button {

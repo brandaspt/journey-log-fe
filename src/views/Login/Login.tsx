@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react"
 import { Form, Button, Alert } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../redux/hooks"
-import { getMyPostsAction, getUserDataAction } from "../../redux/user/userSlice"
+import { getMyPhotosAction, getMyPostsAction, getUserDataAction } from "../../redux/user/userSlice"
 import { loginUser } from "../../utils/backend/endpoints"
 import { FcGoogle } from "react-icons/fc"
 import "./Login.css"
@@ -29,6 +29,7 @@ const Login = () => {
       await loginUser(credentials)
       dispatch(getUserDataAction())
       dispatch(getMyPostsAction())
+      dispatch(getMyPhotosAction())
       history.push("/dashboard")
     } catch (err) {
       setError("Invalid credentials")
@@ -38,7 +39,7 @@ const Login = () => {
   return (
     <div className="Login">
       <Form onSubmit={handleLogin}>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-2">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -50,7 +51,7 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-2">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -66,7 +67,7 @@ const Login = () => {
             Login
           </Button>
 
-          <Button variant="light" as="a" href={`${process.env.REACT_APP_BACKEND_URL}/auth/googleLogin`} className="mt-3 w-100 border">
+          <Button variant="light" as="a" href={`${process.env.REACT_APP_BACKEND_URL}/auth/googleLogin`} className="mt-2 w-100 border">
             <FcGoogle className="me-3" size={22} />
             Login with Google
           </Button>
