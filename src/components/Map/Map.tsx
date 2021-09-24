@@ -57,7 +57,7 @@ const Map = () => {
 
         {isMe && <NewPost />}
 
-        <MarkerClusterGroup maxClusterRadius={40}>
+        <MarkerClusterGroup maxClusterRadius={35}>
           {isMe
             ? myPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)
             : selectedUserPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)}

@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react"
-import { Button, Form, Offcanvas, Spinner } from "react-bootstrap"
+import { Button, Form, FormControl, InputGroup, Offcanvas, Spinner } from "react-bootstrap"
 import { AiOutlineUpload } from "react-icons/ai"
 import { FaCheck } from "react-icons/fa"
 import { FiUpload } from "react-icons/fi"
@@ -43,6 +43,7 @@ const UploadPhotos = () => {
   }
 
   const handleChoosePhotos = async (e: ChangeEvent<HTMLInputElement>) => {
+    setSelectedPhotos([])
     const files = e.target.files
     if (!files) return
     setIsLoadingPhotos(true)
@@ -61,7 +62,8 @@ const UploadPhotos = () => {
     setSelectedPhotos(copyArr)
   }
 
-  const handleSubmitPhotos = async () => {
+  const handleSubmitPhotos = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const formData = new FormData()
     selectedPhotos.forEach(photo => {
       formData.append("photos", photo.photoFile)
@@ -74,6 +76,7 @@ const UploadPhotos = () => {
       await uploadPhotos(formData)
       setIsLoadingUpload(false)
       setUploadStatus("created")
+
       setTimeout(() => {
         resetForm()
         dispatch(getMyPhotosAction())
@@ -107,6 +110,17 @@ const UploadPhotos = () => {
     setSelectedPhotos(copyArr)
   }
 
+  const handleLatChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
+    const copyArr = [...selectedPhotos]
+    copyArr[idx].latitude = Number(e.target.value)
+    setSelectedPhotos(copyArr)
+  }
+  const handleLngChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
+    const copyArr = [...selectedPhotos]
+    copyArr[idx].longitude = Number(e.target.value)
+    setSelectedPhotos(copyArr)
+  }
+
   useEffect(() => {
     if (!selectedPhotos.find(photo => photo.isPrivate)) setPrivacy("allPublic")
     else if (!selectedPhotos.find(photo => !photo.isPrivate)) setPrivacy("allPrivate")
@@ -115,10 +129,10 @@ const UploadPhotos = () => {
 
   return (
     <div className="UploadPhotos">
-      <Button variant="warning" className="d-flex align-items-center" onClick={() => setShow(true)}>
+      <button className="d-flex align-items-center upload-btn" onClick={() => setShow(true)}>
         <AiOutlineUpload className="me-3" size={20} />
         Upload Photos
-      </Button>
+      </button>
       <Offcanvas show={show} onHide={handleClose} placement="end" className="UploadPhotosCanvas">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title as="h2" className="text-center w-100">
@@ -135,43 +149,96 @@ const UploadPhotos = () => {
             <MdAddAPhoto className="me-3" size={20} />
             Select Photos
           </Button>
-          <Form.Check
-            type={"radio"}
-            name="privacy-checkbox"
-            label={"All Public"}
-            checked={privacy === "allPublic"}
-            onChange={handlePublicChange}
-          />
-          <Form.Check
-            type={"radio"}
-            name="privacy-checkbox"
-            label={"All Private"}
-            checked={privacy === "allPrivate"}
-            onChange={handlePrivateChange}
-          />
-          <Form.Check type={"radio"} name="privacy-checkbox" label={"Custom"} checked={privacy === "custom"} disabled />
+          <div className="disclaimer text-center text-muted my-1">
+            <strong>Did you know?</strong>
+            <p className="m-0">
+              <em>.heic</em> files take longer to process.
+            </p>
+            <p className="m-0">Only photos with valid latitude and longitude can be uploaded.</p>
+          </div>
+          {selectedPhotos.length > 0 && (
+            <div>
+              <hr />
+              <div className="d-flex justify-content-around">
+                <Form.Check
+                  type={"radio"}
+                  name="privacy-checkbox"
+                  label={"All Public"}
+                  checked={privacy === "allPublic"}
+                  onChange={handlePublicChange}
+                />
+                <Form.Check
+                  type={"radio"}
+                  name="privacy-checkbox"
+                  label={"All Private"}
+                  checked={privacy === "allPrivate"}
+                  onChange={handlePrivateChange}
+                />
+                <Form.Check type={"radio"} name="privacy-checkbox" label={"Custom"} checked={privacy === "custom"} disabled />
+              </div>
+              <hr />
+            </div>
+          )}
           {isLoadingPhotos && (
             <div className="text-center mt-3">
               <Spinner animation="border" />
               <p className="text-muted">Admiring your amazing photos... 👀</p>
             </div>
           )}
-          <div className="d-flex justify-content-center flex-wrap">
-            {selectedPhotos.map((photo, idx) => (
-              <div key={idx} className="position-relative mt-3 mx-1">
-                <img src={photo.blobURL} alt="thumbnail" height="150px" />
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className={!photo.isPrivate ? `m-0 fw-bold text-end` : `m-0 text-muted text-end`} style={{ width: "55px" }}>
-                    Public
+          <div className="d-block text-center">
+            <form id="coords-form" onSubmit={e => handleSubmitPhotos(e)}>
+              {selectedPhotos.map((photo, idx) => (
+                <div key={idx}>
+                  <div className="d-inline-block position-relative mt-3 mx-1">
+                    <img src={photo.blobURL} alt="thumbnail" />
+                    <MdRemoveCircle size={20} className="remove-photo-btn" onClick={() => handleRemovePhoto(idx)} />
                   </div>
-                  <Form.Check type="switch" className="ms-3 me-2" checked={photo.isPrivate} onChange={e => handleSetPhotoPrivate(e, idx)} />
-                  <div className={photo.isPrivate ? `m-0 fw-bold text-start` : `m-0 text-muted text-start`} style={{ width: "55px" }}>
-                    Private
+                  <div className="d-flex align-items-center justify-content-center mt-2">
+                    <div className={!photo.isPrivate ? `m-0 fw-bold text-end` : `m-0 text-muted text-end`} style={{ width: "55px" }}>
+                      Public
+                    </div>
+                    <Form.Check
+                      type="switch"
+                      className="ms-3 me-2"
+                      checked={photo.isPrivate}
+                      onChange={e => handleSetPhotoPrivate(e, idx)}
+                    />
+                    <div className={photo.isPrivate ? `m-0 fw-bold text-start` : `m-0 text-muted text-start`} style={{ width: "55px" }}>
+                      Private
+                    </div>
                   </div>
+                  <div className="d-flex flex-column align-items-center">
+                    <InputGroup size="sm" className="mb-1 mt-2">
+                      <InputGroup.Text>Latitude:</InputGroup.Text>
+                      <FormControl
+                        type="number"
+                        placeholder="-90...90"
+                        min={-90}
+                        max={90}
+                        step={0.0001}
+                        required
+                        value={photo.latitude && photo.latitude.toFixed(4)}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleLatChange(e, idx)}
+                      />
+                    </InputGroup>
+                    <InputGroup size="sm">
+                      <InputGroup.Text>Longitude:</InputGroup.Text>
+                      <FormControl
+                        type="number"
+                        placeholder="-180...180"
+                        min={-180}
+                        max={180}
+                        step={0.0001}
+                        required
+                        value={photo.longitude && photo.longitude.toFixed(4)}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleLngChange(e, idx)}
+                      />
+                    </InputGroup>
+                  </div>
+                  <hr />
                 </div>
-                <MdRemoveCircle size={20} className="remove-photo-btn" onClick={() => handleRemovePhoto(idx)} />
-              </div>
-            ))}
+              ))}
+            </form>
           </div>
         </Offcanvas.Body>
         {selectedPhotos.length > 0 &&
@@ -187,7 +254,7 @@ const UploadPhotos = () => {
               </div>
             </Button>
           ) : (
-            <Button className="rounded-0 d-flex align-items-center justify-content-center" size="lg" onClick={handleSubmitPhotos}>
+            <Button className="rounded-0 d-flex align-items-center justify-content-center" size="lg" type="submit" form="coords-form">
               <FiUpload className="me-3" />
               Submit Photos
             </Button>

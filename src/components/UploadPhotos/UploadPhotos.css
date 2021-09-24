@@ -5,19 +5,39 @@
   transform: translateX(-50%);
   z-index: 400;
 }
-.UploadPhotos .btn {
-  margin: 0;
-  opacity: 0.7;
+.UploadPhotosCanvas .disclaimer {
+  font-size: 12px !important;
 }
+.UploadPhotosCanvas .input-group {
+  width: 200px;
+}
+.UploadPhotos .upload-btn {
+  background-color: #d8b26e;
+  color: #ffeeca;
+  font-weight: bold;
+  border: none;
+  margin: 0;
+  opacity: 0.8;
+  box-shadow: 2px 2px #bd8a32;
+  padding: 8px 10px;
+  border-radius: 0.2rem;
+}
+.UploadPhotos .upload-btn:hover {
+  background-color: #d8b26e;
+  opacity: 1;
+}
+
 .UploadPhotos .btn:focus {
   box-shadow: none;
   outline: none;
 }
-.UploadPhotos .btn-warning:hover {
-  opacity: 1;
-}
+
 .UploadPhotos input[type="file"] {
   display: none;
+}
+.UploadPhotosCanvas img {
+  max-width: 100%;
+  max-height: 200px;
 }
 
 .UploadPhotosCanvas .btn-success,

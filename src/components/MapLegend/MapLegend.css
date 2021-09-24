@@ -16,10 +16,10 @@
 }
 
 .MapLegend .marker-pin.private {
-  background-color: rgb(120, 72, 15);
+  background-color: #d86e74;
 }
 .MapLegend .marker-pin.public {
-  background-color: darkorange;
+  background-color: #d8b26e;
 }
 .MapLegend p {
   font-size: 14px;

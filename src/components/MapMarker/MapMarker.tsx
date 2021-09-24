@@ -21,11 +21,11 @@ const MapMarker = ({ content, type }: IMapMarkerProps) => {
       position={[content.lat, content.lng]}
       icon={divIcon({
         className: "MapMarker",
-        html: `<div style='${
-          content.isPrivate ? "background-color:rgb(120, 72, 15)" : "background-color:rgb(255, 140, 0);"
-        }' class='marker-pin'></div>${type === "post" ? `<i class="fas fa-anchor"></i>` : `<i class="fas fa-camera"></i>`}`,
-        iconSize: [30, 42],
-        iconAnchor: [15, 42],
+        html: `<div style='${content.isPrivate ? "background-color:#d86e74" : "background-color:#d8b26e"}' class='marker-pin'></div>${
+          type === "post" ? `<i class="fas fa-anchor"></i>` : `<i class="fas fa-camera"></i>`
+        }`,
+        iconSize: [24, 36],
+        iconAnchor: [12, 36],
         popupAnchor: [0, -30],
         tooltipAnchor: [0, -30],
       })}
