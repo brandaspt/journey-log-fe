@@ -1,0 +1,49 @@
+.SearchUsers .form-control:focus {
+  box-shadow: none;
+}
+.SearchUsers .search-results {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 31px;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  border: 1px solid rgb(191, 191, 191);
+  max-height: 400px;
+  min-width: 230px;
+  width: fit-content !important;
+  overflow-y: scroll;
+}
+
+.SearchUsers .search-results p {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.SearchUsers .search-results img {
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.SearchUsers .search-results > div {
+  padding: 5px 10px;
+}
+.SearchUsers .search-results > div:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.SearchUsers .search-results .follow-btn {
+  font-size: 14px;
+  border: 1px solid #d86e74;
+  background-color: white;
+  color: #d86e74;
+  border-radius: 3px;
+  margin-left: auto;
+}
+.SearchUsers .search-results .follow-btn:hover {
+  background-color: #d86e74;
+  color: white;
+}

@@ -11,6 +11,7 @@ import {
   getMyPhotosAction,
 } from "../../redux/user/userSlice"
 import backend from "../../utils/backend/backend"
+import SearchUsers from "../SearchUsers/SearchUsers"
 import "./TopNavbar.css"
 
 const TopNavbar = () => {
@@ -36,41 +37,44 @@ const TopNavbar = () => {
           {userLoading ? (
             <Spinner animation="border" />
           ) : userData ? (
-            <NavDropdown align="end" title={<img className="avatar" src={userData.avatar} alt="avatar" />}>
-              <NavDropdown.Item
-                as="div"
-                onClick={async () => {
-                  const resp = await backend.get("/users/me")
-                  console.log(resp)
-                }}
-              >
-                My Profile
-              </NavDropdown.Item>
-              <Link to={`/users/${userData._id}/map`}>
-                <NavDropdown.Item as="div">My Map</NavDropdown.Item>
-              </Link>
-              <Link to="/dashboard">
-                <NavDropdown.Item as="div">My Dashboard</NavDropdown.Item>
-              </Link>
-              <Link to="/">
-                <NavDropdown.Item as="div" className="p-0">
-                  <Button
-                    size="sm"
-                    variant="danger"
-                    className="w-100 "
-                    onClick={() => {
-                      dispatch(logoutUserAction())
-                    }}
-                  >
-                    Logout
-                  </Button>
+            <div className="d-flex align-items-center">
+              <SearchUsers />
+              <NavDropdown align="end" title={<img className="avatar" src={userData.avatar} alt="avatar" />}>
+                <NavDropdown.Item
+                  as="div"
+                  onClick={async () => {
+                    const resp = await backend.get("/users/me")
+                    console.log(resp)
+                  }}
+                >
+                  My Profile
                 </NavDropdown.Item>
-              </Link>
-            </NavDropdown>
+                <Link to={`/users/${userData._id}/map`}>
+                  <NavDropdown.Item as="div">My Map</NavDropdown.Item>
+                </Link>
+                <Link to="/dashboard">
+                  <NavDropdown.Item as="div">My Dashboard</NavDropdown.Item>
+                </Link>
+                <Link to="/">
+                  <NavDropdown.Item as="div" className="p-0">
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      className="w-100 "
+                      onClick={() => {
+                        dispatch(logoutUserAction())
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </NavDropdown.Item>
+                </Link>
+              </NavDropdown>
+            </div>
           ) : (
             <Link to="/login">
               <Button size="sm" variant="warning">
-                Login
+                Login / Register
               </Button>
             </Link>
           )}

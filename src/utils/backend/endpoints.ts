@@ -55,3 +55,8 @@ export const uploadPhotos = async (formData: FormData) => {
   const { data }: AxiosResponse = await backend.post(`/photos`, formData)
   return data
 }
+
+export const searchUsers = async (query: string) => {
+  const { data }: AxiosResponse = await backend(`/users/search?q=${query}`)
+  return data
+}

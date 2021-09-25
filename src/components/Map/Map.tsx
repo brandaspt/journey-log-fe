@@ -1,4 +1,5 @@
-import { LatLngBounds } from "leaflet"
+import L, { LatLngBounds } from "leaflet"
+import { v4 as uuidv4 } from "uuid"
 import { useEffect } from "react"
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-markercluster"
@@ -10,8 +11,8 @@ import MapLegend from "../MapLegend/MapLegend"
 import NewPost from "../NewPost/NewPost"
 import MapMarker from "../MapMarker/MapMarker"
 import UploadPhotos from "../UploadPhotos/UploadPhotos"
-import "./Map.css"
 import { getSelectedUserPhotosAction, selectedUserPhotosStore } from "../../redux/photos/photosSlice"
+import "./Map.css"
 
 const maxBounds = new LatLngBounds([-85, -180], [85, 180])
 
@@ -29,6 +30,7 @@ const Map = () => {
   useEffect(() => {
     dispatch(getSelectedUserPostsAction(params.userId))
     dispatch(getSelectedUserPhotosAction(params.userId))
+    L.markerClusterGroup().clearLayers()
   }, [dispatch, params.userId, isMe])
 
   return (
@@ -57,7 +59,7 @@ const Map = () => {
 
         {isMe && <NewPost />}
 
-        <MarkerClusterGroup maxClusterRadius={35}>
+        <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
           {isMe
             ? myPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)
             : selectedUserPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)}

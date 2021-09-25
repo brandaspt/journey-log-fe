@@ -6,7 +6,6 @@ export interface IUser extends IMongoDoc {
   name: string
   surname: string
   email: string
-  password?: string
   avatar?: string
   bio?: string
   refreshToken?: string
