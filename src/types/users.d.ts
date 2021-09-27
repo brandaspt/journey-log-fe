@@ -6,8 +6,8 @@ export interface IUser extends IMongoDoc {
   name: string
   surname: string
   email: string
-  following: IUser[]
-  followers: IUser[]
+  following: string[]
+  followers: string[]
   avatar?: string
   bio?: string
   refreshToken?: string

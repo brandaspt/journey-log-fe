@@ -43,7 +43,13 @@ const SearchUsers = () => {
           {results.map(user => (
             <div key={user._id} className="d-flex align-items-center">
               <img src={user.avatar} alt="user avatar" />
-              <p className="m-0 mx-2" onClick={() => history.push(`/users/${user._id}/map`)}>
+              <p
+                className="m-0 mx-2"
+                onClick={() => {
+                  setQuery("")
+                  history.push(`/users/${user._id}/map`)
+                }}
+              >
                 {user.name} {user.surname}
               </p>
               {user._id === userData?._id ? (

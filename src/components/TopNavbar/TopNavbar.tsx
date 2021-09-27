@@ -55,6 +55,9 @@ const TopNavbar = () => {
                 <Link to="/dashboard">
                   <NavDropdown.Item as="div">My Dashboard</NavDropdown.Item>
                 </Link>
+                <Link to="/friendsMap">
+                  <NavDropdown.Item as="div">Friends Map</NavDropdown.Item>
+                </Link>
                 <Link to="/">
                   <NavDropdown.Item as="div" className="p-0">
                     <Button

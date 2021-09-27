@@ -1,3 +1,7 @@
+.PhotoPopup {
+  text-align: center;
+}
 .PhotoPopup img {
   width: 200px;
+  display: block;
 }

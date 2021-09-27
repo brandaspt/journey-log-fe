@@ -129,10 +129,13 @@ const UploadPhotos = () => {
 
   return (
     <div className="UploadPhotos">
-      <button className="d-flex align-items-center upload-btn" onClick={() => setShow(true)}>
-        <AiOutlineUpload className="me-3" size={20} />
-        Upload Photos
-      </button>
+      <div className="d-flex flex-column align-items-center">
+        <button className="d-flex align-items-center upload-btn" onClick={() => setShow(true)}>
+          <AiOutlineUpload className="me-3" size={20} />
+          Upload Photos
+        </button>
+        <em className="post-info">or click anywhere on the map to start a new post!</em>
+      </div>
       <Offcanvas show={show} onHide={handleClose} placement="end" className="UploadPhotosCanvas">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title as="h2" className="text-center w-100">
@@ -151,10 +154,13 @@ const UploadPhotos = () => {
           </Button>
           <div className="disclaimer text-center text-muted my-1">
             <strong>Did you know?</strong>
-            <p className="m-0">
+            <p className="my-1">
               <em>.heic</em> files take longer to process.
             </p>
-            <p className="m-0">Only photos with valid latitude and longitude can be uploaded.</p>
+            <p className="m-0">
+              Only photos with valid latitude and longitude can be uploaded. You will be able to manually add these to any photos that don't
+              have it.
+            </p>
           </div>
           {selectedPhotos.length > 0 && (
             <div>
@@ -174,7 +180,14 @@ const UploadPhotos = () => {
                   checked={privacy === "allPrivate"}
                   onChange={handlePrivateChange}
                 />
-                <Form.Check type={"radio"} name="privacy-checkbox" label={"Custom"} checked={privacy === "custom"} disabled />
+                <Form.Check
+                  type={"radio"}
+                  name="privacy-checkbox"
+                  label={"Custom"}
+                  checked={privacy === "custom"}
+                  disabled
+                  style={{ display: "none" }}
+                />
               </div>
               <hr />
             </div>

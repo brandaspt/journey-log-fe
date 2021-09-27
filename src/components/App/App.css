@@ -1,3 +1,46 @@
 .App {
   height: calc(100vh - 65px);
 }
+.leaflet-container {
+  width: 100vw;
+  height: calc(100vh - 65px);
+}
+.MapMarker .marker-pin {
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50% 50% 0;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -12px 0 0 -12px;
+}
+/* .MapMarker .marker-pin::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  margin: 3px 0 0 3px;
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+} */
+.MapMarker i,
+.MapMarker img {
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  right: 0;
+  margin: 9px auto;
+  text-align: center;
+}
+.MapMarker i {
+  font-size: 15px;
+  color: white;
+}
+.MapMarker img {
+  width: 20px;
+  height: 20px;
+  top: -1px;
+  object-fit: cover;
+}
