@@ -60,3 +60,7 @@ export const searchUsers = async (query: string) => {
   const { data }: AxiosResponse = await backend(`/users/search?q=${query}`)
   return data
 }
+export const toggleFollowUser = async (userToFollowId: string) => {
+  const { data }: AxiosResponse = await backend.post(`/users/toggleFollow`, { userId: userToFollowId })
+  return data
+}

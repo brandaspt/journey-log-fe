@@ -20,6 +20,10 @@
   font-size: 14px;
   white-space: nowrap;
 }
+.SearchUsers .search-results p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .SearchUsers .search-results img {
   height: 32px;
@@ -31,19 +35,36 @@
   padding: 5px 10px;
 }
 .SearchUsers .search-results > div:hover {
-  cursor: pointer;
-  background-color: lightgray;
+  background-color: rgb(230, 230, 230);
 }
 
-.SearchUsers .search-results .follow-btn {
+.SearchUsers .search-results .follow-btn,
+.SearchUsers .search-results .unfollow-btn,
+.SearchUsers .search-results .me-btn {
   font-size: 14px;
   border: 1px solid #d86e74;
-  background-color: white;
-  color: #d86e74;
   border-radius: 3px;
   margin-left: auto;
+}
+.SearchUsers .search-results .follow-btn {
+  background-color: white;
+  color: #d86e74;
 }
 .SearchUsers .search-results .follow-btn:hover {
   background-color: #d86e74;
   color: white;
+}
+.SearchUsers .search-results .unfollow-btn {
+  background-color: #d86e74;
+  color: white;
+}
+.SearchUsers .search-results .unfollow-btn:hover {
+  background-color: white;
+  color: #d86e74;
+}
+.SearchUsers .search-results .me-btn {
+  border: 1px solid #d8b26e;
+  background-color: white;
+  color: #d8b26e;
+  cursor: auto;
 }

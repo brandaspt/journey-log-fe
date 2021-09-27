@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../store"
 import { IUserStore } from "../../types/users"
-import { fetchMe, fetchMyPhotos, fetchMyPosts, logoutUser } from "../../utils/backend/endpoints"
+import { fetchMe, fetchMyPhotos, fetchMyPosts, logoutUser, toggleFollowUser } from "../../utils/backend/endpoints"
 
 const initialState: IUserStore = {
   profile: null,
@@ -15,6 +15,10 @@ export const getUserDataAction = createAsyncThunk("user/fetchMe", async () => aw
 export const getMyPostsAction = createAsyncThunk("posts/fetchMyPosts", async () => await fetchMyPosts())
 export const getMyPhotosAction = createAsyncThunk("posts/fetchMyPhotos", async () => await fetchMyPhotos())
 export const logoutUserAction = createAsyncThunk("user/logout", async () => await logoutUser())
+export const toggleFollowUserAction = createAsyncThunk("user/toggleFollowUser", async (userToFollowId: string) => {
+  await toggleFollowUser(userToFollowId)
+  return await fetchMe()
+})
 
 export const userSlice = createSlice({
   name: "user",
@@ -57,6 +61,9 @@ export const userSlice = createSlice({
         state.profile = null
         state.myPosts = []
         state.error = ""
+      })
+      .addCase(toggleFollowUserAction.fulfilled, (state, action) => {
+        if (state.profile) state.profile.following = action.payload.following
       })
   },
 })
