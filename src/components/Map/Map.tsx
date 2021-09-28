@@ -27,7 +27,7 @@ const Map = () => {
   useEffect(() => {
     dispatch(getSelectedUserPostsAction(params.userId))
     dispatch(getSelectedUserPhotosAction(params.userId))
-  }, [dispatch, params.userId, isMe])
+  }, [params.userId, dispatch])
 
   return (
     <div className="position-relative">

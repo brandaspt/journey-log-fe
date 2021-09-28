@@ -41,7 +41,7 @@ const PostPopup = ({ post }: IPostPopupProps) => {
                 </p>
               </Card.Text>
             </div>
-            <AiFillLike size={28} color="coral" />
+            <AiFillLike size={28} color="#d86e74" />
           </div>
           <hr />
           {post.description && (
@@ -53,7 +53,7 @@ const PostPopup = ({ post }: IPostPopupProps) => {
           )}
           <div className="text-center">
             <Button variant="primary" size="sm">
-              Comment
+              <Link to={`/posts/${post._id}`}>Details</Link>
             </Button>
           </div>
         </Card.Body>

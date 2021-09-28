@@ -27,7 +27,7 @@ const MapLegend = ({ isMe }: { isMe: boolean }) => {
         <p>Photo</p>
       </div>
       <div className="d-flex align-items-center">
-        <div className="icon-wrapper">
+        <div className="icon-wrapper last">
           <i className="fas fa-anchor"></i>
         </div>
         <p>Post</p>

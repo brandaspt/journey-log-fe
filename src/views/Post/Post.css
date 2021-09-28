@@ -1,0 +1,11 @@
+.Post .photos-wrapper {
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  padding: 10px 0;
+}
+.Post .photos-wrapper img {
+  height: 300px;
+  margin: 0 10px;
+  box-shadow: 0 0px 6px 0px rgb(0 0 0 / 50%);
+}

@@ -4,6 +4,9 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 400;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
 }
 .UploadPhotosCanvas .disclaimer {
   font-size: 12px !important;
@@ -12,15 +15,19 @@
   width: 200px;
 }
 .UploadPhotos .upload-btn {
-  background-color: #d8b26e;
-  color: #ffeeca;
-  font-weight: bold;
+  background-color: #96d86e;
+  color: black;
+  font-weight: 500;
   border: none;
-  margin: 0;
+  margin: 0 0 10px;
   opacity: 0.8;
-  box-shadow: 2px 2px #bd8a32;
+  box-shadow: 0 3px 6px -3px rgb(0 0 0 / 50%);
   padding: 8px 10px;
   border-radius: 0.2rem;
+  font-size: 14px;
+}
+.UploadPhotos .upload-btn:hover {
+  background-color: #83c25c;
 }
 .UploadPhotos .post-info {
   color: #d86e74;
@@ -28,10 +35,7 @@
   margin: 0;
   padding: 0 10px;
   border-radius: 10px;
-}
-.UploadPhotos .upload-btn:hover {
-  background-color: #d8b26e;
-  opacity: 1;
+  text-align: center;
 }
 
 .UploadPhotos .btn:focus {

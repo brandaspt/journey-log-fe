@@ -4,6 +4,7 @@ import { userProfileStore } from "../../redux/user/userSlice"
 import Dashboard from "../../views/Dashboard/Dashboard"
 import Home from "../../views/Home/Home"
 import Login from "../../views/Login/Login"
+import Post from "../../views/Post/Post"
 import FriendsMap from "../FriendsMap/FriendsMap"
 import Map from "../Map/Map"
 import NotLoggedIn from "../NotLoggedIn/NotLoggedIn"
@@ -20,6 +21,7 @@ function App() {
       <Route path="/dashboard" component={userData ? Dashboard : NotLoggedIn} />
       <Route path="/friendsMap" component={userData ? FriendsMap : NotLoggedIn} />
       <Route path="/users/:userId/map" component={Map} />
+      <Route path="/posts/:postId" component={Post} />
     </div>
   )
 }

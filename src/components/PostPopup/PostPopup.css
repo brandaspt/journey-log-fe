@@ -9,6 +9,7 @@
   row-gap: 5px;
   max-height: 250px;
   overflow-y: scroll;
+  box-shadow: 0 3px 6px -3px rgb(0 0 0 / 50%);
   /* box-shadow: 0px 4px 2px #888, 0px -4px 2px #888; */
   border-radius: 5px;
 }
@@ -35,4 +36,9 @@
 .post-card .post-description {
   max-height: 75px;
   overflow-y: scroll;
+}
+.post-popup a,
+.post-popup a:hover {
+  color: white;
+  text-decoration: none;
 }
