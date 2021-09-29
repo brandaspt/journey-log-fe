@@ -5,7 +5,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getSelectedUserPostsAction, selectedUserPostsStore } from "../../redux/posts/postsSlice"
-import { userMyPhotosStore, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
+import { getMyPhotosAction, userMyPhotosStore, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import MapLegend from "../MapLegend/MapLegend"
 import NewPost from "../NewPost/NewPost"
 import MapMarker from "../MapMarker/MapMarker"
@@ -27,7 +27,11 @@ const Map = () => {
   useEffect(() => {
     dispatch(getSelectedUserPostsAction(params.userId))
     dispatch(getSelectedUserPhotosAction(params.userId))
-  }, [params.userId, dispatch])
+    if (isMe) {
+      dispatch(getMyPhotosAction())
+      dispatch(getMyPhotosAction())
+    }
+  }, [params.userId, dispatch, isMe])
 
   return (
     <div className="position-relative">

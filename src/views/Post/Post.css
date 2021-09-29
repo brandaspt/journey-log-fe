@@ -9,3 +9,9 @@
   margin: 0 10px;
   box-shadow: 0 0px 6px 0px rgb(0 0 0 / 50%);
 }
+.Post .user-avatar {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+}

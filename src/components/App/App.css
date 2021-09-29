@@ -5,10 +5,6 @@
   width: 100vw;
   height: calc(100vh - 65px);
 }
-.btn:focus {
-  box-shadow: none !important;
-  outline: none !important;
-}
 .MapMarker .marker-pin {
   width: 24px;
   height: 24px;
