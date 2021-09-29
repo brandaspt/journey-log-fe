@@ -23,12 +23,16 @@ export const getAddressFromCoords = async (lat: number, long: number) => {
   return address
 }
 
+export const heic2jpeg = async (file: File) => {
+  const jpeg = (await heic2any({ blob: file, toType: "image/jpeg" })) as Blob
+  return jpeg
+}
+
 export const createBlobURLs = async (files: FileList) => {
   const urlArr: IPostPhotosArray = []
-
   for (let i = 0; i < files.length; i++) {
     if (files[i].type.includes("heic")) {
-      const jpeg = (await heic2any({ blob: files[i], toType: "image/jpeg" })) as Blob
+      const jpeg = await heic2jpeg(files[i])
       urlArr.push({
         photoFile: jpeg,
         blobURL: URL.createObjectURL(jpeg),

@@ -41,6 +41,10 @@ export const fetchPostById = async (postId: string) => {
   const { data }: AxiosResponse<IPost> = await backend(`/posts/${postId}`)
   return data
 }
+export const deletePost = async (postId: string) => await backend.delete(`/posts/${postId}`)
+export const addPhotos = async (postId: string, formData: FormData) => await backend.put(`/posts/${postId}/addPhotos`, formData)
+export const editPost = async (postId: string, payload: { title?: string; description?: string }) =>
+  await backend.put(`/posts/${postId}`, payload)
 
 // PHOTOS
 export const fetchMyPhotos = async () => {

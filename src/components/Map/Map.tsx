@@ -5,7 +5,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getSelectedUserPostsAction, selectedUserPostsStore } from "../../redux/posts/postsSlice"
-import { getMyPhotosAction, userMyPhotosStore, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
+import { getMyPhotosAction, getMyPostsAction, userMyPhotosStore, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import MapLegend from "../MapLegend/MapLegend"
 import NewPost from "../NewPost/NewPost"
 import MapMarker from "../MapMarker/MapMarker"
@@ -29,7 +29,7 @@ const Map = () => {
     dispatch(getSelectedUserPhotosAction(params.userId))
     if (isMe) {
       dispatch(getMyPhotosAction())
-      dispatch(getMyPhotosAction())
+      dispatch(getMyPostsAction())
     }
   }, [params.userId, dispatch, isMe])
 
