@@ -72,6 +72,7 @@ export const userProfileStore = (state: RootState) => state.user.profile
 export const userMyPostsStore = (state: RootState) => state.user.myPosts
 export const userMyPhotosStore = (state: RootState) => state.user.myPhotos
 export const userFollowingStore = (state: RootState) => state.user.profile?.following
+export const userFollowersStore = (state: RootState) => state.user.profile?.followers
 export const userLoadingStore = (state: RootState) => state.user.loading
 export const userErrorStore = (state: RootState) => state.user.error
 

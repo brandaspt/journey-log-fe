@@ -10,7 +10,11 @@ import {
   getMyPostsAction,
   getMyPhotosAction,
 } from "../../redux/user/userSlice"
-import backend from "../../utils/backend/backend"
+import { GiPlagueDoctorProfile } from "react-icons/gi"
+import { GoDashboard } from "react-icons/go"
+import { RiRoadMapLine } from "react-icons/ri"
+import { IoShareSocialOutline } from "react-icons/io5"
+import { BiLogOut } from "react-icons/bi"
 import SearchUsers from "../SearchUsers/SearchUsers"
 import "./TopNavbar.css"
 
@@ -40,34 +44,42 @@ const TopNavbar = () => {
             <div className="d-flex align-items-center">
               <SearchUsers />
               <NavDropdown align="end" title={<img className="avatar" src={userData.avatar} alt="avatar" />}>
-                <NavDropdown.Item
-                  as="div"
-                  onClick={async () => {
-                    const resp = await backend.get("/users/me")
-                    console.log(resp)
-                  }}
-                >
-                  My Profile
-                </NavDropdown.Item>
-                <Link to={`/users/${userData._id}/map`}>
-                  <NavDropdown.Item as="div">My Map</NavDropdown.Item>
+                <Link to="/myProfile">
+                  <NavDropdown.Item as="div">
+                    <GiPlagueDoctorProfile />
+                    <p>Profile</p>
+                  </NavDropdown.Item>
                 </Link>
                 <Link to="/dashboard">
-                  <NavDropdown.Item as="div">My Dashboard</NavDropdown.Item>
+                  <NavDropdown.Item as="div">
+                    <GoDashboard />
+                    <p>Dashboard</p>
+                  </NavDropdown.Item>
+                </Link>
+                <Link to={`/users/${userData._id}/map`}>
+                  <NavDropdown.Item as="div">
+                    <RiRoadMapLine />
+                    <p>Map</p>
+                  </NavDropdown.Item>
                 </Link>
                 <Link to="/friendsMap">
-                  <NavDropdown.Item as="div">Friends Map</NavDropdown.Item>
+                  <NavDropdown.Item as="div">
+                    <IoShareSocialOutline />
+                    <p>Friends Map</p>
+                  </NavDropdown.Item>
                 </Link>
                 <Link to="/">
                   <NavDropdown.Item as="div" className="p-0">
                     <Button
                       size="sm"
                       variant="danger"
-                      className="w-100 "
+                      className="w-100 d-flex align-items-center justify-content-center"
+                      as="div"
                       onClick={() => {
                         dispatch(logoutUserAction())
                       }}
                     >
+                      <BiLogOut className="me-2" />
                       Logout
                     </Button>
                   </NavDropdown.Item>

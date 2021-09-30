@@ -18,19 +18,31 @@ export const fetchMe = async () => {
   const { data }: AxiosResponse<IUser> = await backend("/users/me")
   return data
 }
+export const fetchMyPosts = async () => {
+  const { data }: AxiosResponse<IPost[]> = await backend(`/users/myPosts`)
+  return data
+}
+export const fetchMyPhotos = async () => {
+  const { data }: AxiosResponse<IPhoto[]> = await backend(`/users/myPhotos`)
+  return data
+}
+export const fetchUserPublicInfo = async (userId: string) => {
+  const { data }: AxiosResponse<IUser[]> = await backend(`/users/${userId}/publicInfo`)
+  return data
+}
+export const fetchSelectedUserPosts = async (userId: string) => {
+  const { data }: AxiosResponse<IPost[]> = await backend(`/users/${userId}/publicPosts`)
+  return data
+}
+export const fetchSelectedUserPhotos = async (userId: string) => {
+  const { data }: AxiosResponse<IPhoto[]> = await backend(`/users/${userId}/publicPhotos`)
+  return data
+}
 export const searchUsers = async (query: string) => {
   const { data }: AxiosResponse<IUser[]> = await backend(`/users/search?q=${query}`)
   return data
 }
 export const toggleFollowUser = async (userToFollowId: string) => await backend.post(`/users/toggleFollow`, { userId: userToFollowId })
-export const fetchSelectedUserPosts = async (userId: string) => {
-  const { data }: AxiosResponse<IPost[]> = await backend(`/users/${userId}/publicPosts`)
-  return data
-}
-export const fetchMyPosts = async () => {
-  const { data }: AxiosResponse<IPost[]> = await backend(`/users/myPosts`)
-  return data
-}
 
 // POSTS
 export const newPost = async (formData: FormData) => {
@@ -47,13 +59,5 @@ export const editPost = async (postId: string, payload: { title?: string; descri
   await backend.put(`/posts/${postId}`, payload)
 
 // PHOTOS
-export const fetchMyPhotos = async () => {
-  const { data }: AxiosResponse<IPhoto[]> = await backend(`/photos/me`)
-  return data
-}
-export const fetchSelectedUserPhotos = async (userId: string) => {
-  const { data }: AxiosResponse<IPhoto[]> = await backend(`/photos/${userId}`)
-  return data
-}
 export const uploadPhotos = async (formData: FormData) => await backend.post(`/photos`, formData)
 export const deletePhoto = async (photoId: string) => await backend.delete(`/photos/${photoId}`)

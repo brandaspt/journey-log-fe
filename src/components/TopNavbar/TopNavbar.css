@@ -12,6 +12,14 @@
   object-fit: cover;
   border-radius: 50%;
 }
+.TopNavbar .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+.TopNavbar .dropdown-item p {
+  margin-left: 10px;
+}
 
 .TopNavbar .dropdown-toggle {
   display: flex;
