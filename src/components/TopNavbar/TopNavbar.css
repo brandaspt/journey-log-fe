@@ -31,10 +31,7 @@
   right: -12px;
   padding-bottom: 0;
 }
-.TopNavbar .btn:focus {
-  outline: none;
-  box-shadow: none;
-}
+
 .TopNavbar .btn-danger {
   border-top-left-radius: 0;
   border-top-right-radius: 0;

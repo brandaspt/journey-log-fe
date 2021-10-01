@@ -1,0 +1,21 @@
+.UserCard .user-avatar {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.UserCard .map-btn {
+  font-size: 14px;
+  border: 1px solid var(--prim-blue);
+  border-radius: 3px;
+  margin-left: 10px;
+  background-color: var(--prim-blue);
+  color: white;
+}
+.UserCard .map-btn:hover {
+  background-color: white;
+  color: var(--prim-blue);
+}
+.UserCard .text-small {
+  font-size: 14px;
+}

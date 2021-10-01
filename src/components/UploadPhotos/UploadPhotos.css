@@ -1,12 +1,64 @@
 .UploadPhotos {
   position: absolute;
-  top: 5px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  padding: 0 10px;
   z-index: 400;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
+}
+.UploadPhotos .post-info {
+  color: var(--prim-dark);
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+}
+.UploadPhotos .upload-btn {
+  background-color: #96d86e;
+  color: black;
+  font-weight: 500;
+  border: none;
+  width: 100%;
+  justify-content: center;
+  opacity: 0.8;
+  box-shadow: var(--prim-box-shadow);
+  padding: 8px 10px;
+  border-radius: 0.2rem;
+  font-size: 18px;
+}
+@media screen and (min-width: 400px) {
+  .UploadPhotos {
+    bottom: 20px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .UploadPhotos {
+    top: 5px;
+    left: 50%;
+    bottom: auto;
+    width: fit-content;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: var(--prim-box-shadow);
+  }
+  .UploadPhotos .upload-btn {
+    width: auto;
+    margin: 0 0 10px;
+    opacity: 0.8;
+    box-shadow: var(--prim-box-shadow);
+    font-size: 14px;
+  }
+  .UploadPhotos .upload-btn:hover {
+    background-color: #83c25c;
+  }
+  .UploadPhotos .post-info {
+    display: block;
+  }
 }
 .UploadPhotosCanvas .disclaimer {
   font-size: 12px !important;
@@ -14,35 +66,6 @@
 .UploadPhotosCanvas .input-group {
   width: 200px;
 }
-.UploadPhotos .upload-btn {
-  background-color: #96d86e;
-  color: black;
-  font-weight: 500;
-  border: none;
-  margin: 0 0 10px;
-  opacity: 0.8;
-  box-shadow: 0 3px 6px -3px rgb(0 0 0 / 50%);
-  padding: 8px 10px;
-  border-radius: 0.2rem;
-  font-size: 14px;
-}
-.UploadPhotos .upload-btn:hover {
-  background-color: #83c25c;
-}
-.UploadPhotos .post-info {
-  color: var(--prim-dark);
-  /* background-color: rgba(255, 255, 255, 0.8); */
-  margin: 0;
-  padding: 0 10px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.UploadPhotos .btn:focus {
-  box-shadow: none;
-  outline: none;
-}
-
 .UploadPhotos input[type="file"] {
   display: none;
 }
@@ -73,8 +96,4 @@
 .UploadPhotosCanvas .remove-photo-btn:hover {
   color: white;
   background-color: red;
-}
-.UploadPhotosCanvas button:focus {
-  outline: none !important;
-  box-shadow: none !important;
 }

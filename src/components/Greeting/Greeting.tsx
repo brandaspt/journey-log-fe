@@ -5,7 +5,6 @@ import "./Greeting.css"
 
 const Greeting = () => {
   const [hour, setHour] = useState<number | null>(null)
-  const [show, setShow] = useState(false)
   const userData = useAppSelector(userProfileStore)
 
   const getHour = () => {
@@ -25,14 +24,10 @@ const Greeting = () => {
 
   useEffect(() => {
     getHour()
-    const timer = setTimeout(() => {
-      setShow(true)
-    }, 200)
-    return () => clearTimeout(timer)
   }, [])
 
   return (
-    <h3 className={show ? "Greeting show" : "Greeting"}>
+    <h3 className="Greeting">
       {getGreeting()}, <span>{userData?.name}</span>
     </h3>
   )

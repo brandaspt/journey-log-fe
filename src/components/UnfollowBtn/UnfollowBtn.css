@@ -1,0 +1,12 @@
+.UnfollowBtn {
+  font-size: 14px;
+  border: 1px solid var(--prim-dark);
+  border-radius: 3px;
+  margin-left: auto;
+  background-color: var(--prim-dark);
+  color: white;
+}
+.UnfollowBtn:hover {
+  background-color: white;
+  color: var(--prim-dark);
+}

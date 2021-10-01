@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { FormControl } from "react-bootstrap"
 import { useHistory } from "react-router"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { toggleFollowUserAction, userProfileStore } from "../../redux/user/userSlice"
+import { useAppSelector } from "../../redux/hooks"
+import { userProfileStore } from "../../redux/user/userSlice"
 import { IUser } from "../../types/users"
 import { searchUsers } from "../../utils/backend/endpoints"
+import FollowBtn from "../FollowBtn/FollowBtn"
+import UnfollowBtn from "../UnfollowBtn/UnfollowBtn"
 import "./SearchUsers.css"
 
 const SearchUsers = () => {
@@ -13,8 +15,6 @@ const SearchUsers = () => {
   const history = useHistory()
 
   const userData = useAppSelector(userProfileStore)
-
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (query.length < 3) setResults([])
@@ -55,13 +55,9 @@ const SearchUsers = () => {
               {user._id === userData?._id ? (
                 <button className="me-btn">Me</button>
               ) : userData?.following.includes(user._id) ? (
-                <button className="unfollow-btn" onClick={() => dispatch(toggleFollowUserAction(user._id))}>
-                  Unfollow
-                </button>
+                <UnfollowBtn userId={user._id} />
               ) : (
-                <button className="follow-btn" onClick={() => dispatch(toggleFollowUserAction(user._id))}>
-                  Follow
-                </button>
+                <FollowBtn userId={user._id} />
               )}
             </div>
           ))}

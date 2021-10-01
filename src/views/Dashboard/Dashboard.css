@@ -1,3 +1,46 @@
+@keyframes appearFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .Dashboard {
   min-height: 100%;
+}
+.Dashboard .row {
+  margin-top: 15px;
+}
+
+.Dashboard .at-a-glance,
+.Dashboard .followers,
+.Dashboard .following,
+.Dashboard .posts,
+.Dashboard .photos {
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: appearFromTop 1s forwards;
+}
+
+.Dashboard .at-a-glance {
+  animation-delay: 400ms;
+}
+.Dashboard .followers {
+  animation-delay: 800ms;
+}
+.Dashboard .following {
+  animation-delay: 1200ms;
+}
+.Dashboard .posts {
+  animation-delay: 1600ms;
+}
+.Dashboard .photos {
+  animation-delay: 2000ms;
+}
+.Dashboard section {
+  margin-bottom: 50px;
 }

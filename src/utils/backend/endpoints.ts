@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios"
 import { IPhoto } from "../../types/photos"
 import { IPost } from "../../types/posts"
-import { IUser } from "../../types/users"
+import { IPublicUserData, IUser } from "../../types/users"
 import { ILoginCredentials } from "../../views/Login/Login"
 import backend from "./backend"
 
@@ -27,7 +27,7 @@ export const fetchMyPhotos = async () => {
   return data
 }
 export const fetchUserPublicInfo = async (userId: string) => {
-  const { data }: AxiosResponse<IUser[]> = await backend(`/users/${userId}/publicInfo`)
+  const { data }: AxiosResponse<IPublicUserData[]> = await backend(`/users/${userId}/publicInfo`)
   return data
 }
 export const fetchSelectedUserPosts = async (userId: string) => {

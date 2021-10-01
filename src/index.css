@@ -12,10 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.btn:focus {
+.btn:focus,
+.form-control:focus {
   box-shadow: none;
   outline: none;
 }
+
 p,
 h3 {
   margin: 0;
@@ -26,4 +28,5 @@ h3 {
   --prim-light: #d8b26e;
   --prim-green: #96d86e;
   --prim-blue: #6e98d8;
+  --prim-box-shadow: 0 3px 6px 0px rgb(0 0 0 / 50%);
 }

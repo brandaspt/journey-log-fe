@@ -2,12 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
 import Greeting from "../../components/Greeting/Greeting"
 import { useAppSelector } from "../../redux/hooks"
-import { userFollowersStore, userFollowingStore, userMyPhotosStore, userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
-import { IUser } from "../../types/users"
+import { userFollowersStore, userFollowingStore, userMyPhotosStore, userMyPostsStore } from "../../redux/user/userSlice"
+import { IPublicUserData } from "../../types/users"
 import { fetchUserPublicInfo } from "../../utils/backend/endpoints"
 import { IoIosPeople } from "react-icons/io"
 import { RiUserHeartFill } from "react-icons/ri"
 import { FaAnchor, FaCamera } from "react-icons/fa"
+import UserCard from "../../components/UserCard/UserCard"
 
 import "./Dashboard.css"
 
@@ -17,8 +18,8 @@ const Dashboard = () => {
   const myPosts = useAppSelector(userMyPostsStore)
   const myPhotos = useAppSelector(userMyPhotosStore)
 
-  const [followingUsers, setFollowingUsers] = useState<IUser[]>([])
-  const [followersUsers, setFollowersUsers] = useState<IUser[]>([])
+  const [followingUsers, setFollowingUsers] = useState<IPublicUserData[]>([])
+  const [followersUsers, setFollowersUsers] = useState<IPublicUserData[]>([])
 
   const getFollowing = useCallback(async () => {
     const following = await Promise.all(followingIds!.map(id => fetchUserPublicInfo(id)))
@@ -40,8 +41,9 @@ const Dashboard = () => {
   return (
     <Container className="Dashboard">
       <Greeting />
-      <section className="stats-cards-wrapper my-5">
-        <Row>
+      <section className="at-a-glance">
+        <h3>At a glance</h3>
+        <Row className="g-2">
           <Col xs={12} sm={6} md={3}>
             <Card className="text-center h-100">
               <Card.Body className="d-flex align-items-center justify-content-between">
@@ -87,6 +89,40 @@ const Dashboard = () => {
             </Card>
           </Col>
         </Row>
+      </section>
+      <section className="followers">
+        <h3>Followers</h3>
+        {followersUsers.length === 0 ? (
+          <p>You have no followers yet.</p>
+        ) : (
+          <Row className="g-2">
+            {followersUsers.map(follower => (
+              <Col key={follower.publicProfile._id} xs={12} sm={6} md={4}>
+                <UserCard user={follower} />
+              </Col>
+            ))}
+          </Row>
+        )}
+      </section>
+      <section className="following">
+        <h3>Following</h3>
+        {followingUsers.length === 0 ? (
+          <p>You are not following anyone yet.</p>
+        ) : (
+          <Row className="g-2">
+            {followingUsers.map(following => (
+              <Col key={following.publicProfile._id} xs={12} sm={6} md={4}>
+                <UserCard user={following} />
+              </Col>
+            ))}
+          </Row>
+        )}
+      </section>
+      <section className="posts">
+        <h3>Posts</h3>
+      </section>
+      <section className="photos">
+        <h3>Photos</h3>
       </section>
     </Container>
   )

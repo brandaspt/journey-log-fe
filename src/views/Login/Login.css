@@ -10,7 +10,7 @@
   padding: 20px 30px;
   border: 1px solid lightgray;
   border-radius: 10px;
-  box-shadow: 0 0 5px gray;
+  box-shadow: var(--prim-box-shadow);
 }
 
 .Login .form-label {
@@ -19,10 +19,6 @@
 
 .Login button {
   width: 100%;
-}
-.Login .btn:focus {
-  outline: none;
-  box-shadow: none;
 }
 
 .Login hr {

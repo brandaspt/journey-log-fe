@@ -1,6 +1,3 @@
-.SearchUsers .form-control:focus {
-  box-shadow: none;
-}
 .SearchUsers .search-results {
   position: absolute;
   display: flex;
@@ -38,32 +35,11 @@
   background-color: rgb(230, 230, 230);
 }
 
-.SearchUsers .search-results .follow-btn,
-.SearchUsers .search-results .unfollow-btn,
 .SearchUsers .search-results .me-btn {
   font-size: 14px;
   border: 1px solid var(--prim-dark);
   border-radius: 3px;
   margin-left: auto;
-}
-.SearchUsers .search-results .follow-btn {
-  background-color: white;
-  color: var(--prim-dark);
-}
-.SearchUsers .search-results .follow-btn:hover {
-  background-color: var(--prim-dark);
-  color: white;
-}
-.SearchUsers .search-results .unfollow-btn {
-  background-color: var(--prim-dark);
-  color: white;
-}
-.SearchUsers .search-results .unfollow-btn:hover {
-  background-color: white;
-  color: var(--prim-dark);
-}
-.SearchUsers .search-results .me-btn {
-  border: 1px solid var(--prim-light);
   background-color: white;
   color: var(--prim-light);
   cursor: auto;

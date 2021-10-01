@@ -8,10 +8,6 @@
   margin: 22px 0;
 }
 
-.NewPostCanvas .form-switch input {
-  box-shadow: none;
-  outline: none;
-}
 .NewPostCanvas .photos-container img {
   max-height: 150px;
 }
@@ -19,10 +15,7 @@
 .NewPostCanvas input[type="file"] {
   display: none;
 }
-.NewPostCanvas button:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
+
 .NewPostCanvas .btn-success,
 .NewPostCanvas .btn-warning {
   cursor: auto;

@@ -21,3 +21,9 @@ export interface IUserStore {
   loading: boolean
   error: string
 }
+
+export interface IPublicUserData {
+  publicProfile: IUser
+  publicPhotos: IPhoto[]
+  publicPosts: IPost[]
+}
