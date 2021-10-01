@@ -1,11 +1,11 @@
 @keyframes appearFromTop {
   from {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: scaleY(0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scaleY(1);
   }
 }
 
@@ -16,16 +16,20 @@
   margin-top: 15px;
 }
 
+.Dashboard .Greeting,
 .Dashboard .at-a-glance,
 .Dashboard .followers,
 .Dashboard .following,
 .Dashboard .posts,
 .Dashboard .photos {
   opacity: 0;
-  transform: translateY(-100%);
+  transform: scaleY(0);
   animation: appearFromTop 1s forwards;
 }
 
+.Dashboard .Greeting {
+  animation-delay: 0ms;
+}
 .Dashboard .at-a-glance {
   animation-delay: 400ms;
 }

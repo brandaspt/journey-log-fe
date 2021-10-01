@@ -12,16 +12,18 @@ const UserCard = ({ user }: { user: IPublicUserData }) => {
   const userData = useAppSelector(userProfileStore)
   return (
     <Card className="UserCard text-center">
-      <Card.Body className="d-flex align-items-center justify-content-evenly">
+      <Card.Body className="d-flex justify-content-evenly align-items-center">
         <img className="user-avatar" src={user.publicProfile.avatar} alt="user avatar" referrerPolicy="no-referrer" />
 
         <div className="d-flex flex-column align-items-start ms-1">
           <p>
             {user.publicProfile.name} {user.publicProfile.surname}
           </p>
-          <p className="text-small text-muted mt-1">Joined {new Date(user.publicProfile.createdAt).toLocaleDateString()}</p>
-          <p className="text-small text-muted">Public Photos: {user.publicPhotos.length}</p>
-          <p className="text-small text-muted mb-1">Public Posts: {user.publicPosts.length}</p>
+          <div className="d-flex flex-column align-items-start">
+            <p className="text-small text-muted mt-1">Joined {new Date(user.publicProfile.createdAt).toLocaleDateString()}</p>
+            <p className="text-small text-muted">Public Photos: {user.publicPhotos.length}</p>
+            <p className="text-small text-muted mb-1">Public Posts: {user.publicPosts.length}</p>
+          </div>
           <div className="d-flex align-items-center justify-content-between">
             {userData?.following?.includes(user.publicProfile._id) ? (
               <UnfollowBtn userId={user.publicProfile._id} />

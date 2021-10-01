@@ -27,7 +27,7 @@ export const fetchMyPhotos = async () => {
   return data
 }
 export const fetchUserPublicInfo = async (userId: string) => {
-  const { data }: AxiosResponse<IPublicUserData[]> = await backend(`/users/${userId}/publicInfo`)
+  const { data }: AxiosResponse<IPublicUserData> = await backend(`/users/${userId}/publicInfo`)
   return data
 }
 export const fetchSelectedUserPosts = async (userId: string) => {

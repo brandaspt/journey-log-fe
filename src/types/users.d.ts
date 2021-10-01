@@ -27,3 +27,8 @@ export interface IPublicUserData {
   publicPhotos: IPhoto[]
   publicPosts: IPost[]
 }
+
+export interface ISelectedUserStore {
+  publicData: IPublicUserData | null
+  loading: boolean
+}

@@ -1,13 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-import photosSlice from "./photos/photosSlice"
-import postsSlice from "./posts/postsSlice"
+
+import selectedUserSlice from "./selectedUser/selectedUserSlice"
 import userSlice from "./user/userSlice"
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    posts: postsSlice,
-    photos: photosSlice,
+    selectedUser: selectedUserSlice,
   },
 })
 

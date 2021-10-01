@@ -1,22 +1,5 @@
-@keyframes appearFromTop {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .Greeting {
   text-align: center;
-  opacity: 0;
-  transform: translateY(-100%);
-  animation: appearFromTop 1s forwards;
-  animation-name: appearFromTop;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
 }
 h3.Greeting {
   margin: 0;
