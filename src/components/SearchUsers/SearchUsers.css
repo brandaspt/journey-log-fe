@@ -42,29 +42,29 @@
 .SearchUsers .search-results .unfollow-btn,
 .SearchUsers .search-results .me-btn {
   font-size: 14px;
-  border: 1px solid #d86e74;
+  border: 1px solid var(--prim-dark);
   border-radius: 3px;
   margin-left: auto;
 }
 .SearchUsers .search-results .follow-btn {
   background-color: white;
-  color: #d86e74;
+  color: var(--prim-dark);
 }
 .SearchUsers .search-results .follow-btn:hover {
-  background-color: #d86e74;
+  background-color: var(--prim-dark);
   color: white;
 }
 .SearchUsers .search-results .unfollow-btn {
-  background-color: #d86e74;
+  background-color: var(--prim-dark);
   color: white;
 }
 .SearchUsers .search-results .unfollow-btn:hover {
   background-color: white;
-  color: #d86e74;
+  color: var(--prim-dark);
 }
 .SearchUsers .search-results .me-btn {
-  border: 1px solid #d8b26e;
+  border: 1px solid var(--prim-light);
   background-color: white;
-  color: #d8b26e;
+  color: var(--prim-light);
   cursor: auto;
 }

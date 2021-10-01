@@ -20,7 +20,7 @@ const FriendsMapMarker = ({ content, type }: IFriendsMapMarkerProps) => {
       icon={divIcon({
         className: "MapMarker",
         html: `<div style='${
-          type === "post" ? "background-color:#d86e74" : "background-color:#d8b26e"
+          type === "post" ? "background-color:var(--prim-dark)" : "background-color:var(--prim-light)"
         }' class='marker-pin'></div><img src="${content.userId.avatar}" alt="user avatar"/>`,
         iconSize: [24, 36],
         iconAnchor: [12, 36],

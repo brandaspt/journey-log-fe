@@ -30,7 +30,7 @@
   background-color: #83c25c;
 }
 .UploadPhotos .post-info {
-  color: #d86e74;
+  color: var(--prim-dark);
   /* background-color: rgba(255, 255, 255, 0.8); */
   margin: 0;
   padding: 0 10px;

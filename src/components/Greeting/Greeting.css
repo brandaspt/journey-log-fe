@@ -15,5 +15,5 @@ h3.Greeting {
 }
 
 .Greeting span {
-  color: #d8b26e;
+  color: var(--prim-light);
 }

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding-top: 65px;
+  background-color: rgba(0, 0, 0, 0.03);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -15,6 +16,14 @@ code {
   box-shadow: none;
   outline: none;
 }
-p {
+p,
+h3 {
   margin: 0;
+}
+
+:root {
+  --prim-dark: #d86e74;
+  --prim-light: #d8b26e;
+  --prim-green: #96d86e;
+  --prim-blue: #6e98d8;
 }

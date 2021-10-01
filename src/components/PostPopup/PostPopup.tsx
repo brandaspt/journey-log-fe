@@ -41,7 +41,7 @@ const PostPopup = ({ post }: IPostPopupProps) => {
                 </p>
               </Card.Text>
             </div>
-            <AiFillLike size={28} color="#d86e74" />
+            <AiFillLike size={28} color="var(--prim-dark)" />
           </div>
           <hr />
           {post.description && (
