@@ -1,0 +1,7 @@
+.user-widget {
+  position: absolute;
+  top: 10px;
+  left: 70px;
+  z-index: 400;
+  box-shadow: var(--prim-box-shadow);
+}

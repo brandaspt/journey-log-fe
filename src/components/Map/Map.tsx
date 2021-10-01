@@ -11,6 +11,9 @@ import NewPost from "../NewPost/NewPost"
 import MapMarker from "../MapMarker/MapMarker"
 import UploadPhotos from "../UploadPhotos/UploadPhotos"
 import { maxBounds } from "../../utils/map"
+import UserCard from "../UserCard/UserCard"
+
+import "./Map.css"
 
 const Map = () => {
   const userData = useAppSelector(userProfileStore)
@@ -67,6 +70,11 @@ const Map = () => {
       </MapContainer>
       {isMe && <UploadPhotos />}
       <MapLegend isMe={isMe} />
+      {!isMe && selectedUserData && (
+        <div className="user-widget">
+          <UserCard user={selectedUserData} />
+        </div>
+      )}
     </div>
   )
 }

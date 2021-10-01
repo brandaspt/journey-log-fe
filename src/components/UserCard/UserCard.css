@@ -7,7 +7,7 @@
   font-size: 14px;
   border: 1px solid var(--prim-blue);
   border-radius: 3px;
-  margin-left: 10px;
+  margin-right: 10px;
   background-color: var(--prim-blue);
   color: white;
 }

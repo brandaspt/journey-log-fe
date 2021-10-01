@@ -44,3 +44,7 @@
   color: var(--prim-light);
   cursor: auto;
 }
+.SearchUsers .search-results .FollowBtn,
+.SearchUsers .search-results .UnfollowBtn {
+  margin-left: auto;
+}
