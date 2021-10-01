@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap"
-import { Link, useHistory, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useAppSelector } from "../../redux/hooks"
 import { userProfileStore } from "../../redux/user/userSlice"
 import { IPublicUserData } from "../../types/users"

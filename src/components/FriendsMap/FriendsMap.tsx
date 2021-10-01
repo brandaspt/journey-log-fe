@@ -6,7 +6,7 @@ import { useAppSelector } from "../../redux/hooks"
 import { userFollowingStore } from "../../redux/user/userSlice"
 import { IPhoto } from "../../types/photos"
 import { IPost } from "../../types/posts"
-import { fetchSelectedUserPhotos, fetchSelectedUserPosts } from "../../utils/backend/endpoints"
+import { fetchUserPublicInfo } from "../../utils/backend/endpoints"
 import { maxBounds } from "../../utils/map"
 import FriendsMapMarker from "../FriendsMapMarker/FriendsMapMarker"
 
@@ -15,22 +15,16 @@ const FriendsMap = () => {
   const [allPhotos, setAllPhotos] = useState<IPhoto[]>([])
   const [allPosts, setAllPosts] = useState<IPost[]>([])
 
-  const getAllPhotos = useCallback(async () => {
+  const getPostsAndPhotos = useCallback(async () => {
     if (!following) return
-    const photos = await Promise.all(following?.map(userId => fetchSelectedUserPhotos(userId)))
-    setAllPhotos(photos.flat(1))
-  }, [following])
-
-  const getAllPosts = useCallback(async () => {
-    if (!following) return
-    const posts = await Promise.all(following?.map(userId => fetchSelectedUserPosts(userId)))
-    setAllPosts(posts.flat(1))
+    const usersData = await Promise.all(following?.map(userId => fetchUserPublicInfo(userId)))
+    setAllPhotos(usersData.map(user => user.publicPhotos).flat(1))
+    setAllPosts(usersData.map(user => user.publicPosts).flat(1))
   }, [following])
 
   useEffect(() => {
-    getAllPhotos()
-    getAllPosts()
-  }, [getAllPhotos, getAllPosts])
+    getPostsAndPhotos()
+  }, [getPostsAndPhotos])
 
   return (
     <div className="position-relative">
