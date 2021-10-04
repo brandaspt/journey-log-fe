@@ -3,6 +3,8 @@ import { IPhoto } from "../../types/photos"
 import { IPost } from "../../types/posts"
 import { IPublicUserData, IUser } from "../../types/users"
 import { ILoginCredentials } from "../../views/Login/Login"
+import { IUpdateUserDetails } from "../../views/MyProfile/MyProfile"
+import { IRegisterDetails } from "../../views/Register/Register"
 import backend from "./backend"
 
 // AUTH
@@ -11,7 +13,11 @@ export const refreshTokens = async () => {
   return data
 }
 export const loginUser = async (credentials: ILoginCredentials) => await backend.post("/auth/login", credentials)
-export const logoutUser = async () => await backend("/auth/logout")
+export const logoutUser = async () => {
+  const { data } = await backend("/auth/logout")
+  return data
+}
+export const registerUser = async (payload: IRegisterDetails) => await backend.post("/auth/register", payload)
 
 // USERS
 export const fetchMe = async () => {
@@ -35,6 +41,11 @@ export const searchUsers = async (query: string) => {
   return data
 }
 export const toggleFollowUser = async (userToFollowId: string) => await backend.post(`/users/toggleFollow`, { userId: userToFollowId })
+export const emailExists = async (email: string) => {
+  const { data } = await backend.post(`/users/checkEmail`, { email })
+  return data
+}
+export const updateUserDetails = async (payload: IUpdateUserDetails) => await backend.put(`/users/updateProfile`, payload)
 
 // POSTS
 export const newPost = async (formData: FormData) => {

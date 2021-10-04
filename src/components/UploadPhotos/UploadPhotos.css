@@ -16,19 +16,6 @@
   text-align: center;
   display: none;
 }
-.UploadPhotos .upload-btn {
-  background-color: #96d86e;
-  color: black;
-  font-weight: 500;
-  border: none;
-  width: 100%;
-  justify-content: center;
-  opacity: 0.8;
-  box-shadow: var(--prim-box-shadow);
-  padding: 8px 10px;
-  border-radius: 0.2rem;
-  font-size: 18px;
-}
 @media screen and (min-width: 400px) {
   .UploadPhotos {
     bottom: 20px;
@@ -52,9 +39,6 @@
     opacity: 0.8;
     box-shadow: var(--prim-box-shadow);
     font-size: 14px;
-  }
-  .UploadPhotos .upload-btn:hover {
-    background-color: #83c25c;
   }
   .UploadPhotos .post-info {
     display: block;

@@ -130,7 +130,7 @@ const UploadPhotos = () => {
   return (
     <div className="UploadPhotos">
       <div className="d-flex flex-column align-items-center">
-        <button className="d-flex align-items-center upload-btn" onClick={() => setShow(true)}>
+        <button className="d-flex align-items-center upload-btn main-btn" onClick={() => setShow(true)}>
           <AiOutlineUpload className="me-3" size={20} />
           Upload Photos
         </button>

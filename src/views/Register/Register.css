@@ -1,0 +1,11 @@
+.Register form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.Register hr {
+  margin: 20px 0;
+}
+.Register .register-btn {
+  max-width: 300px;
+  margin-top: 20px;
+}

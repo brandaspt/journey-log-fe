@@ -40,9 +40,26 @@
 .Dashboard .posts {
   animation-delay: 1600ms;
 }
+.Dashboard .posts .post-card {
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  cursor: pointer;
+}
+
+.Dashboard .posts .post-card:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+.Dashboard a {
+  text-decoration: none;
+}
 .Dashboard .photos {
   animation-delay: 2000ms;
 }
+.Dashboard .photos .photo-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
 .Dashboard section {
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 }

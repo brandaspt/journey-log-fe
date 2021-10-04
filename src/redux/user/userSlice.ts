@@ -60,6 +60,7 @@ export const userSlice = createSlice({
         state.loading = false
         state.profile = null
         state.myPosts = []
+        state.myPhotos = []
         state.error = ""
       })
       .addCase(toggleFollowUserAction.fulfilled, (state, action) => {

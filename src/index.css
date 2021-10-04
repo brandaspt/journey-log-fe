@@ -30,3 +30,19 @@ h3 {
   --prim-blue: #6e98d8;
   --prim-box-shadow: 0 3px 6px 0px rgb(0 0 0 / 50%);
 }
+.main-btn {
+  background-color: #96d86e;
+  color: black;
+  font-weight: 500;
+  border: none;
+  width: 100%;
+  justify-content: center;
+  opacity: 0.8;
+  box-shadow: var(--prim-box-shadow);
+  padding: 8px 10px;
+  border-radius: 0.2rem;
+  font-size: 18px;
+}
+.main-btn:hover {
+  background-color: #83c25c;
+}

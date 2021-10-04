@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react"
 import { Form, Button, Alert } from "react-bootstrap"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../redux/hooks"
 import { getMyPhotosAction, getMyPostsAction, getUserDataAction } from "../../redux/user/userSlice"
 import { loginUser } from "../../utils/backend/endpoints"
@@ -78,7 +78,9 @@ const Login = () => {
             </Alert>
           )}
           <hr />
-          <Button variant="secondary">Register</Button>
+          <Link to="/register" className="w-100">
+            <Button variant="secondary">Register</Button>
+          </Link>
         </div>
       </Form>
     </div>
