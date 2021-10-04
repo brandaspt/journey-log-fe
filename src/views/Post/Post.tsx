@@ -1,15 +1,16 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
 import { Container, Button, Spinner, Modal, Form } from "react-bootstrap"
 import { AiOutlinePlus, AiOutlineEdit } from "react-icons/ai"
-import { useParams, useHistory, Link } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { useAppSelector } from "../../redux/hooks"
 import { userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import { IPost } from "../../types/posts"
 import { addPhotos, deletePhoto, deletePost, editPost, fetchPostById } from "../../utils/backend/endpoints"
 import TimeAgo from "timeago-react"
+import UserCard from "../../components/UserCard/UserCard"
+import { heic2jpeg } from "../../utils/helpers/helpers"
 
 import "./Post.css"
-import { heic2jpeg } from "../../utils/helpers/helpers"
 
 const Post = () => {
   const userProfile = useAppSelector(userProfileStore)
@@ -143,21 +144,18 @@ const Post = () => {
         </h2>
         {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditTitle} />}
       </div>
-      <div className="d-flex align-items-center my-4">
-        <img src={postDetails.userId.avatar} alt="user avatar" className="user-avatar" />
-        <div className="d-flex flex-column ms-2">
-          <Link to={`/users/${postDetails.userId._id}/map`} className="m-0 text-muted">
-            {postDetails.userId.name} {postDetails.userId.surname}
-          </Link>
-          <p className="text-muted">
-            <TimeAgo datetime={postDetails.createdAt} />
+      <div className="d-flex align-items-center justify-content-between my-4">
+        {!isMyPost && <UserCard userId={postDetails.userId._id} />}
+        <div className="d-flex flex-column align-items-center">
+          <p className="text-muted mb-2">
+            Published: <TimeAgo datetime={postDetails.createdAt} />
           </p>
+          {isMyPost && (
+            <Button variant="danger" size="sm" onClick={handleShowPost}>
+              Delete Post
+            </Button>
+          )}
         </div>
-        {isMyPost && (
-          <Button variant="danger" className="ms-auto" size="sm" onClick={handleShowPost}>
-            Delete Post
-          </Button>
-        )}
       </div>
       <div className="d-flex align-items-center">
         <h5 className="mt-4 mb-0">

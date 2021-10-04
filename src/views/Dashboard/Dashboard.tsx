@@ -1,10 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
 import Greeting from "../../components/Greeting/Greeting"
 import { useAppSelector } from "../../redux/hooks"
 import { userFollowersStore, userFollowingStore, userMyPhotosStore, userMyPostsStore } from "../../redux/user/userSlice"
-import { IPublicUserData } from "../../types/users"
-import { fetchUserPublicInfo } from "../../utils/backend/endpoints"
 import { IoIosPeople } from "react-icons/io"
 import { RiUserHeartFill } from "react-icons/ri"
 import { FaAnchor, FaCamera } from "react-icons/fa"
@@ -18,25 +16,7 @@ const Dashboard = () => {
   const myPosts = useAppSelector(userMyPostsStore)
   const myPhotos = useAppSelector(userMyPhotosStore)
 
-  const [followingUsers, setFollowingUsers] = useState<IPublicUserData[]>([])
-  const [followersUsers, setFollowersUsers] = useState<IPublicUserData[]>([])
-
-  const getFollowing = useCallback(async () => {
-    const following = await Promise.all(followingIds!.map(id => fetchUserPublicInfo(id)))
-    setFollowingUsers(following.flat(1))
-  }, [followingIds])
-
-  const getFollowers = useCallback(async () => {
-    const followers = await Promise.all(followersIds!.map(id => fetchUserPublicInfo(id)))
-    setFollowersUsers(followers.flat(1))
-  }, [followersIds])
-
   const numOfPostPhotos = useMemo(() => myPosts.reduce((acc, curr) => acc + curr.photos.length, 0), [myPosts])
-
-  useEffect(() => {
-    getFollowing()
-    getFollowers()
-  }, [getFollowing, getFollowers])
 
   return (
     <Container className="Dashboard">
@@ -92,13 +72,13 @@ const Dashboard = () => {
       </section>
       <section className="followers">
         <h3>Followers</h3>
-        {followersUsers.length === 0 ? (
+        {followersIds?.length === 0 ? (
           <p>You have no followers yet.</p>
         ) : (
           <Row className="g-2">
-            {followersUsers.map(follower => (
-              <Col key={follower.publicProfile._id} xs={12} sm={6} md={4} lg={3}>
-                <UserCard user={follower} />
+            {followersIds?.map(id => (
+              <Col key={id} xs={12} sm={6} md={4} lg={3}>
+                <UserCard userId={id} />
               </Col>
             ))}
           </Row>
@@ -106,13 +86,13 @@ const Dashboard = () => {
       </section>
       <section className="following">
         <h3>Following</h3>
-        {followingUsers.length === 0 ? (
+        {followingIds?.length === 0 ? (
           <p>You are not following anyone yet.</p>
         ) : (
           <Row className="g-2">
-            {followingUsers.map(following => (
-              <Col key={following.publicProfile._id} xs={12} sm={6} md={4}>
-                <UserCard user={following} />
+            {followingIds?.map(id => (
+              <Col key={id} xs={12} sm={6} md={4}>
+                <UserCard userId={id} />
               </Col>
             ))}
           </Row>

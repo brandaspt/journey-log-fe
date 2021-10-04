@@ -72,7 +72,7 @@ const Map = () => {
       <MapLegend isMe={isMe} />
       {!isMe && selectedUserData && (
         <div className="user-widget">
-          <UserCard user={selectedUserData} />
+          <UserCard userId={selectedUserData.publicProfile._id} />
         </div>
       )}
     </div>
