@@ -97,7 +97,7 @@ const Dashboard = () => {
         ) : (
           <Row className="g-2">
             {followersUsers.map(follower => (
-              <Col key={follower.publicProfile._id} xs={12} sm={6} md={4}>
+              <Col key={follower.publicProfile._id} xs={12} sm={6} md={4} lg={3}>
                 <UserCard user={follower} />
               </Col>
             ))}

@@ -10,7 +10,7 @@ import {
   getMyPostsAction,
   getMyPhotosAction,
 } from "../../redux/user/userSlice"
-import { GiPlagueDoctorProfile } from "react-icons/gi"
+import { FaUserSecret } from "react-icons/fa"
 import { GoDashboard } from "react-icons/go"
 import { RiRoadMapLine } from "react-icons/ri"
 import { IoShareSocialOutline } from "react-icons/io5"
@@ -46,7 +46,7 @@ const TopNavbar = () => {
               <NavDropdown align="end" title={<img className="avatar" src={userData.avatar} alt="avatar" />}>
                 <Link to="/myProfile">
                   <NavDropdown.Item as="div">
-                    <GiPlagueDoctorProfile />
+                    <FaUserSecret />
                     <p>Profile</p>
                   </NavDropdown.Item>
                 </Link>

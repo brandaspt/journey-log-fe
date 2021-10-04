@@ -1,11 +1,11 @@
-@keyframes appearFromTop {
-  from {
+@keyframes fade-in-top {
+  0% {
+    transform: translateY(-50px);
     opacity: 0;
-    transform: scaleY(0);
   }
-  to {
+  100% {
+    transform: translateY(0);
     opacity: 1;
-    transform: scaleY(1);
   }
 }
 
@@ -22,9 +22,7 @@
 .Dashboard .following,
 .Dashboard .posts,
 .Dashboard .photos {
-  opacity: 0;
-  transform: scaleY(0);
-  animation: appearFromTop 1s forwards;
+  animation: fade-in-top 1s both;
 }
 
 .Dashboard .Greeting {
