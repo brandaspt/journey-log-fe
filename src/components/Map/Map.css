@@ -3,5 +3,7 @@
   top: 10px;
   left: 70px;
   z-index: 400;
+}
+.user-widget .card {
   box-shadow: var(--prim-box-shadow);
 }

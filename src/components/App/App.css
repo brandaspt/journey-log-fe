@@ -1,5 +1,6 @@
 .App {
   height: calc(100vh - 65px);
+  scroll-behavior: smooth;
 }
 .leaflet-container {
   width: 100vw;

@@ -1,3 +1,14 @@
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 body {
   margin: 0;
   padding-top: 65px;
@@ -21,6 +32,9 @@ code {
 p,
 h3 {
   margin: 0;
+}
+.text-small {
+  font-size: 13px;
 }
 
 :root {

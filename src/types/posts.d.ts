@@ -1,3 +1,4 @@
+import { IComment } from "./comments"
 import { IMongoDoc } from "./mongo"
 import { IUser } from "./users"
 
@@ -17,6 +18,7 @@ export interface IPost extends IMongoDoc {
   lng: number
   userId: Schema.Types.ObjectId | IUser
   description?: string
+  comments: IComment[]
 }
 
 export interface IPostsStore {

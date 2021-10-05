@@ -5,9 +5,10 @@ import { useParams, useHistory } from "react-router-dom"
 import { useAppSelector } from "../../redux/hooks"
 import { userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
 import { IPost } from "../../types/posts"
-import { addPhotos, deletePhoto, deletePost, editPost, fetchPostById } from "../../utils/backend/endpoints"
+import { addComment, addPhotos, deletePhoto, deletePost, editPost, fetchPostById } from "../../utils/backend/endpoints"
 import TimeAgo from "timeago-react"
 import UserCard from "../../components/UserCard/UserCard"
+import Comment from "../../components/Comment/Comment"
 import { heic2jpeg } from "../../utils/helpers/helpers"
 
 import "./Post.css"
@@ -35,6 +36,8 @@ const Post = () => {
   const [showEditDescription, setShowEditDescription] = useState(false)
   const [newTitle, setNewTitle] = useState("")
   const [newDescription, setNewDescription] = useState("")
+  const [newComment, setNewComment] = useState("")
+  const [isLoadingNewComment, setIsLoadingNewComment] = useState(false)
 
   const handleClosePost = () => setShowPost(false)
   const handleShowPost = () => setShowPost(true)
@@ -134,6 +137,19 @@ const Post = () => {
     }
   }
 
+  const handleNewComment = async () => {
+    try {
+      setIsLoadingNewComment(true)
+      await addComment(postId, { comment: newComment })
+      getPost()
+      setNewComment("")
+      setIsLoadingNewComment(false)
+    } catch (error) {
+      console.log(error)
+      setIsLoadingNewComment(false)
+    }
+  }
+
   if (!postDetails) return <div></div>
 
   return (
@@ -144,7 +160,7 @@ const Post = () => {
         </h2>
         {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditTitle} />}
       </div>
-      <div className="d-flex align-items-center justify-content-between my-4">
+      <div className="d-flex align-items-center justify-content-between mt-4">
         {!isMyPost && <UserCard userId={postDetails.userId._id} />}
         <div className="d-flex flex-column align-items-center">
           <p className="text-muted mb-2">
@@ -158,13 +174,16 @@ const Post = () => {
         </div>
       </div>
       <div className="d-flex align-items-center">
-        <h5 className="mt-4 mb-0">
-          <strong>Description:</strong>
+        <h5>
+          <strong>Description</strong>
         </h5>
         {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditDescription} />}
       </div>
-      <p className="mb-3">{postDetails.description ? postDetails.description : "This post has no description."}</p>
-      <div className="photos-wrapper mt-4">
+      <p>{postDetails.description ? postDetails.description : "This post has no description."}</p>
+      <h5>
+        <strong>Photos</strong>
+      </h5>
+      <div className="photos-wrapper">
         {postDetails.photos.map(photo => (
           <div key={photo._id} className="d-flex flex-column align-items-center me-3">
             <img src={photo.url} alt="item" />
@@ -180,6 +199,29 @@ const Post = () => {
             <div className="add-photo-btn" onClick={() => inputFileRef.current?.click()}>
               {isLoadingAddPhotos ? <Spinner animation="border" /> : <AiOutlinePlus />}
               <input type="file" ref={inputFileRef} multiple onChange={handleAddPhotos} />
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="pb-5">
+        <h5>
+          <strong>Comments</strong>
+        </h5>
+        {!postDetails.comments || postDetails.comments.length === 0 ? (
+          <p>No comments yet</p>
+        ) : (
+          postDetails.comments.map(comment => <Comment key={comment._id} comment={comment} />)
+        )}
+        {userProfile && (
+          <div>
+            <Form.Group className="mb-1 mt-3">
+              <Form.Label>New Comment:</Form.Label>
+              <Form.Control as="textarea" rows={3} value={newComment} onChange={e => setNewComment(e.target.value)} />
+            </Form.Group>
+            <div className="text-end">
+              <Button size="sm" onClick={handleNewComment}>
+                Submit
+              </Button>
             </div>
           </div>
         )}
@@ -246,7 +288,7 @@ const Post = () => {
             {isLoadingEditDescription ? <Spinner animation="border" size="sm" /> : "Save"}
           </Button>
           <Button variant="secondary" onClick={handleCloseEditDescription}>
-            Cancel
+            {isLoadingNewComment ? <Spinner animation="border" size="sm" /> : "Cancel"}
           </Button>
         </Modal.Footer>
       </Modal>

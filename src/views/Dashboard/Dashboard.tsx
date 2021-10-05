@@ -48,7 +48,9 @@ const Dashboard = () => {
                 <IoIosPeople size={42} color="var(--prim-dark)" />
                 <div className="d-flex flex-column align-items-end">
                   <p className="text-muted">Followers</p>
-                  <h3>{followersIds?.length}</h3>
+                  <h3>
+                    <a href="#followers">{followersIds?.length}</a>
+                  </h3>
                 </div>
               </Card.Body>
             </Card>
@@ -59,7 +61,9 @@ const Dashboard = () => {
                 <RiUserHeartFill size={36} color="var(--prim-light)" />
                 <div className="d-flex flex-column align-items-end">
                   <p className="text-muted">Following</p>
-                  <h3>{followingIds?.length}</h3>
+                  <h3>
+                    <a href="#following">{followingIds?.length}</a>
+                  </h3>
                 </div>
               </Card.Body>
             </Card>
@@ -70,7 +74,9 @@ const Dashboard = () => {
                 <FaAnchor size={36} color="var(--prim-green)" />
                 <div className="d-flex flex-column align-items-end">
                   <p className="text-muted">Posts</p>
-                  <h3>{myPosts.length}</h3>
+                  <h3>
+                    <a href="#posts">{myPosts.length}</a>
+                  </h3>
                 </div>
               </Card.Body>
             </Card>
@@ -81,14 +87,16 @@ const Dashboard = () => {
                 <FaCamera size={36} color="var(--prim-blue)" />
                 <div className="d-flex flex-column align-items-end">
                   <p className="text-muted">Photos</p>
-                  <h3>{myPhotos.length}</h3>
+                  <h3>
+                    <a href="#photos">{myPhotos.length}</a>
+                  </h3>
                 </div>
               </Card.Body>
             </Card>
           </Col>
         </Row>
       </section>
-      <section className="followers">
+      <section className="followers" id="followers">
         <h3>Followers</h3>
         {followersIds?.length === 0 ? (
           <p>You have no followers yet.</p>
@@ -102,7 +110,7 @@ const Dashboard = () => {
           </Row>
         )}
       </section>
-      <section className="following">
+      <section className="following" id="following">
         <h3>Following</h3>
         {followingIds?.length === 0 ? (
           <p>You are not following anyone yet.</p>
@@ -116,7 +124,7 @@ const Dashboard = () => {
           </Row>
         )}
       </section>
-      <section className="posts">
+      <section className="posts" id="posts">
         <h3>Posts</h3>
         {myPosts?.length === 0 ? (
           <p>You have no posts yet.</p>
@@ -131,6 +139,9 @@ const Dashboard = () => {
                     <p className="text-muted">
                       {post.photos.length} {post.photos.length === 1 ? "photo" : "photos"}
                     </p>
+                    <p className="text-muted">
+                      {post.comments.length} {post.comments.length === 1 ? "comment" : "comments"}
+                    </p>
                   </div>
                 </Link>
               </Col>
@@ -138,12 +149,12 @@ const Dashboard = () => {
           </Row>
         )}
       </section>
-      <section className="photos">
+      <section className="photos" id="photos">
         <h3>Photos</h3>
         {myPhotos?.length === 0 ? (
           <p>You have no photos yet.</p>
         ) : (
-          <Row className="gx-2 gy-4">
+          <Row className="g-2">
             {myPhotos?.map(photo => (
               <Col key={photo._id} xs={12} sm={6} md={4} lg={3}>
                 <div className="photo-card">

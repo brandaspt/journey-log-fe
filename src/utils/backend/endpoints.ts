@@ -61,6 +61,9 @@ export const addPhotos = async (postId: string, formData: FormData) => await bac
 export const editPost = async (postId: string, payload: { title?: string; description?: string }) =>
   await backend.put(`/posts/${postId}`, payload)
 
+// COMMENTS
+export const addComment = async (postId: string, payload: { comment: string }) => await backend.post(`/posts/${postId}/comments`, payload)
+
 // PHOTOS
 export const uploadPhotos = async (formData: FormData) => await backend.post(`/photos`, formData)
 export const deletePhoto = async (photoId: string) => await backend.delete(`/photos/${photoId}`)

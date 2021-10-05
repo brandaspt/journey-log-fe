@@ -35,35 +35,7 @@ const UserCard = ({ userId }: { userId: string }) => {
   if (loading) return <Spinner animation="border" />
 
   return (
-    <Card className="UserCard text-center">
-      <Card.Body className="position-relative">
-        <div className="d-flex justify-content-between align-items-stretch">
-          <img className="user-avatar" src={publicUserInfo?.publicProfile.avatar} alt="user avatar" referrerPolicy="no-referrer" />
-          <div className="d-flex flex-column justify-content-between">
-            <Link to={`/users/${publicUserInfo?.publicProfile._id}/profile`} className="text-reset">
-              <p>
-                {publicUserInfo?.publicProfile.name} {publicUserInfo?.publicProfile.surname}
-              </p>
-            </Link>
-            <div className="d-flex align-items-center justify-content-center">
-              {!userData ? (
-                <></>
-              ) : userData.following?.includes(publicUserInfo?.publicProfile._id) ? (
-                <UnfollowBtn userId={publicUserInfo?.publicProfile._id} />
-              ) : (
-                <FollowBtn userId={publicUserInfo?.publicProfile._id} />
-              )}
-              {location.pathname.includes("/map") ? (
-                <></>
-              ) : (
-                <Link to={`/users/${publicUserInfo?.publicProfile._id}/map`}>
-                  <button className="map-btn">Map</button>
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      </Card.Body>
+    <div className="UserCard position-relative">
       {publicUserInfo && (
         <div className="user-details">
           <p className="text-small text-muted mt-1">Joined {new Date(publicUserInfo.publicProfile.createdAt).toLocaleDateString()}</p>
@@ -71,7 +43,37 @@ const UserCard = ({ userId }: { userId: string }) => {
           <p className="text-small text-muted mb-1">Public Posts: {publicUserInfo?.publicPosts.length}</p>
         </div>
       )}
-    </Card>
+      <Card className="text-center">
+        <Card.Body>
+          <div className="d-flex justify-content-between align-items-stretch">
+            <img className="user-avatar" src={publicUserInfo?.publicProfile.avatar} alt="user avatar" referrerPolicy="no-referrer" />
+            <div className="d-flex flex-column justify-content-between">
+              <Link to={`/users/${publicUserInfo?.publicProfile._id}/profile`} className="text-reset">
+                <p>
+                  {publicUserInfo?.publicProfile.name} {publicUserInfo?.publicProfile.surname}
+                </p>
+              </Link>
+              <div className="d-flex align-items-center justify-content-center">
+                {!userData ? (
+                  <></>
+                ) : userData.following?.includes(publicUserInfo?.publicProfile._id) ? (
+                  <UnfollowBtn userId={publicUserInfo?.publicProfile._id} />
+                ) : (
+                  <FollowBtn userId={publicUserInfo?.publicProfile._id} />
+                )}
+                {location.pathname.includes("/map") ? (
+                  <></>
+                ) : (
+                  <Link to={`/users/${publicUserInfo?.publicProfile._id}/map`}>
+                    <button className="map-btn">Map</button>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
   )
 }
 
