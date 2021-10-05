@@ -57,6 +57,9 @@ const Register = () => {
   return (
     <Container className="Register">
       <h3 className="text-center my-3">New User</h3>
+      <div className="text-center">
+        <img src="/images/register.png" alt="register" width="200px" />
+      </div>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} md={6}>

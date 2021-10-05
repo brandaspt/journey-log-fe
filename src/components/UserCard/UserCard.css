@@ -26,6 +26,9 @@
   display: none;
   animation: slide-in-top 0.6s both;
 }
+.UserCard:hover {
+  z-index: 10;
+}
 .UserCard:hover .user-details {
   display: block;
 }
