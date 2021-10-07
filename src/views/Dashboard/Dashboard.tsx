@@ -1,8 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, Col, Container, Row, Button, Spinner } from "react-bootstrap"
 import Greeting from "../../components/Greeting/Greeting"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getMyPhotosAction, userFollowersStore, userFollowingStore, userMyPhotosStore, userMyPostsStore } from "../../redux/user/userSlice"
+import {
+  getMyPhotosAction,
+  getMyPostsAction,
+  userFollowersStore,
+  userFollowingStore,
+  userMyPhotosStore,
+  userMyPostsStore,
+} from "../../redux/user/userSlice"
 import { IoIosPeople } from "react-icons/io"
 import { RiUserHeartFill } from "react-icons/ri"
 import { FaAnchor, FaCamera, FaTrashAlt } from "react-icons/fa"
@@ -35,6 +42,11 @@ const Dashboard = () => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    dispatch(getMyPhotosAction())
+    dispatch(getMyPostsAction())
+  }, [dispatch])
 
   return (
     <Container className="Dashboard">
@@ -140,6 +152,9 @@ const Dashboard = () => {
                     </p>
                     <p className="text-muted">
                       {post.comments.length} {post.comments.length === 1 ? "comment" : "comments"}
+                    </p>
+                    <p className="text-muted">
+                      {post.likes?.length} {post.likes?.length === 1 ? "like" : "likes"}
                     </p>
                   </div>
                 </Link>

@@ -61,6 +61,7 @@ export const deletePost = async (postId: string) => await backend.delete(`/posts
 export const addPhotos = async (postId: string, formData: FormData) => await backend.put(`/posts/${postId}/addPhotos`, formData)
 export const editPost = async (postId: string, payload: { title?: string; description?: string }) =>
   await backend.put(`/posts/${postId}`, payload)
+export const toggleLikePost = async (postId: string) => await backend.put(`/posts/${postId}/toggleLike`)
 
 // COMMENTS
 export const addComment = async (postId: string, payload: { comment: string }) => await backend.post(`/posts/${postId}/comments`, payload)

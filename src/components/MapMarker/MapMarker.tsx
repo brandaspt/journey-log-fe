@@ -6,12 +6,15 @@ import PostPopup from "../PostPopup/PostPopup"
 import PhotoPopup from "../PhotoPopup/PhotoPopup"
 import PostTooltip from "../PostTooltip/PostTooltip"
 import PhotoTooltip from "../PhotoTooltip/PhotoTooltip"
+import { useAppDispatch } from "../../redux/hooks"
+import { setPostData } from "../../redux/selectedPost/selectedPost"
 interface IMapMarkerProps {
   content: IPost | IPhoto
   type: "post" | "photo"
 }
 
 const MapMarker = ({ content, type }: IMapMarkerProps) => {
+  const dispatch = useAppDispatch()
   return (
     <Marker
       riseOnHover
@@ -26,9 +29,14 @@ const MapMarker = ({ content, type }: IMapMarkerProps) => {
         popupAnchor: [0, -30],
         tooltipAnchor: [0, -30],
       })}
+      eventHandlers={{
+        click: () => {
+          if (type === "post") dispatch(setPostData(content as IPost))
+        },
+      }}
     >
       {type === "post" ? <PostTooltip post={content as IPost} /> : <PhotoTooltip photo={content as IPhoto} />}
-      {type === "post" ? <PostPopup post={content as IPost} /> : <PhotoPopup photo={content as IPhoto} />}
+      {type === "post" ? <PostPopup /> : <PhotoPopup photo={content as IPhoto} />}
     </Marker>
   )
 }

@@ -33,10 +33,9 @@
   margin: 0;
 }
 .post-card .num-of-likes {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-35%) translateX(-50%);
-  left: 50%;
+  color: var(--prim-dark);
+  text-align: right;
+  font-weight: bold;
 }
 .post-card .post-description {
   max-height: 75px;

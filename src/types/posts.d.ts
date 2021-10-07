@@ -25,3 +25,8 @@ export interface IPostsStore {
   selectedUserPosts: IPost[]
   loading: boolean
 }
+
+export interface ISelectedPostStore {
+  postData: IPost | null
+  loading: boolean
+}

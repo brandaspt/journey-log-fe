@@ -1,17 +1,31 @@
 import { Card, Button } from "react-bootstrap"
-import { AiFillLike } from "react-icons/ai"
+import { AiFillLike, AiOutlineLike } from "react-icons/ai"
 import { Popup } from "react-leaflet"
 import { Link } from "react-router-dom"
 import TimeAgo from "timeago-react"
-import { IPost } from "../../types/posts"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { getSelectedPostData, selectedPostDataStore } from "../../redux/selectedPost/selectedPost"
+import { userProfileStore } from "../../redux/user/userSlice"
+import { toggleLikePost } from "../../utils/backend/endpoints"
 
 import "./PostPopup.css"
 
-interface IPostPopupProps {
-  post: IPost
-}
+const PostPopup = () => {
+  const post = useAppSelector(selectedPostDataStore)
+  const me = useAppSelector(userProfileStore)
 
-const PostPopup = ({ post }: IPostPopupProps) => {
+  const dispatch = useAppDispatch()
+
+  const handleToggleLike = async () => {
+    try {
+      await toggleLikePost(post?._id)
+      dispatch(getSelectedPostData(post?._id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  if (!post) return <></>
   return (
     <Popup className="post-popup">
       <Card className="border-0 post-card">
@@ -41,9 +55,15 @@ const PostPopup = ({ post }: IPostPopupProps) => {
                 </p>
               </Card.Text>
             </div>
-            <div className="position-relative">
-              <AiFillLike size={28} color="var(--prim-dark)" />
-              <p className="num-of-likes m-0">{post.likes?.length}</p>
+            <div>
+              <p className="num-of-likes m-0 fs-6">{post.likes?.length}</p>
+              <div onClick={handleToggleLike}>
+                {post.likes?.includes(me?._id) ? (
+                  <AiFillLike size={28} color="var(--prim-dark)" />
+                ) : (
+                  <AiOutlineLike size={28} color="var(--prim-dark)" />
+                )}
+              </div>
             </div>
           </div>
           <hr />

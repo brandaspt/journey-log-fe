@@ -18,11 +18,12 @@ const UserCard = ({ userId }: { userId: string }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    let isMounted = true
     const getPublicUserInfo = async () => {
       try {
         setLoading(true)
         const userInfo = await fetchUserPublicInfo(userId)
-        setPublicUserInfo(userInfo)
+        if (isMounted) setPublicUserInfo(userInfo)
         setLoading(false)
       } catch (error) {
         setLoading(false)
@@ -30,6 +31,9 @@ const UserCard = ({ userId }: { userId: string }) => {
       }
     }
     getPublicUserInfo()
+    return () => {
+      isMounted = false
+    }
   }, [userId])
 
   if (loading) return <Spinner animation="border" />
