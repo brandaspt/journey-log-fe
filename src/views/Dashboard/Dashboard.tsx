@@ -40,7 +40,6 @@ const Dashboard = () => {
     <Container className="Dashboard">
       <Greeting />
       <section className="at-a-glance">
-        <h3>At a glance</h3>
         <Row className="g-2">
           <Col xs={12} sm={6} md={3}>
             <Card className="text-center h-100">

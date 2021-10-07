@@ -45,15 +45,15 @@ const UserCard = ({ userId }: { userId: string }) => {
       )}
       <Card className="text-center">
         <Card.Body>
-          <div className="d-flex justify-content-between align-items-stretch">
+          <div className="d-flex justify-content-start align-items-stretch">
             <img className="user-avatar" src={publicUserInfo?.publicProfile.avatar} alt="user avatar" referrerPolicy="no-referrer" />
-            <div className="d-flex flex-column justify-content-between">
+            <div className="d-flex flex-column flex-grow-1 justify-content-between">
               <Link to={`/users/${publicUserInfo?.publicProfile._id}/profile`} className="text-reset">
                 <p>
                   {publicUserInfo?.publicProfile.name} {publicUserInfo?.publicProfile.surname}
                 </p>
               </Link>
-              <div className="d-flex align-items-center justify-content-center">
+              <div className="d-flex align-items-center justify-content-evenly">
                 {!userData ? (
                   <></>
                 ) : userData.following?.includes(publicUserInfo?.publicProfile._id) ? (

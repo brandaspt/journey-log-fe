@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { Col, Container, Form, Row, Button } from "react-bootstrap"
+import { Col, Container, Form, Row, Button, Modal, Spinner } from "react-bootstrap"
+import { useHistory } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getUserDataAction, userProfileStore } from "../../redux/user/userSlice"
-import { updateUserDetails } from "../../utils/backend/endpoints"
+import { getUserDataAction, logoutUserAction, userProfileStore } from "../../redux/user/userSlice"
+import { deleteUserAccount, updateUserDetails } from "../../utils/backend/endpoints"
 
 import "./MyProfile.css"
 
@@ -17,6 +18,10 @@ const MyProfile = () => {
   const [bio, setBio] = useState("")
   const [name, setName] = useState("")
   const [surname, setSurname] = useState("")
+  const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false)
+  const [isLoadingDeleteAccount, setIsLoadingDeleteAccount] = useState(false)
+
+  const history = useHistory()
 
   const dispatch = useAppDispatch()
 
@@ -37,13 +42,26 @@ const MyProfile = () => {
     }
   }
 
+  const handleDeleteAccount = async () => {
+    try {
+      setIsLoadingDeleteAccount(true)
+      await deleteUserAccount()
+      dispatch(logoutUserAction())
+      setIsLoadingDeleteAccount(false)
+      history.replace("/login")
+    } catch (error) {
+      setIsLoadingDeleteAccount(false)
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     if (userProfile?.bio) setBio(userProfile?.bio)
     if (userProfile?.name) setName(userProfile?.name)
     if (userProfile?.surname) setSurname(userProfile?.surname)
   }, [userProfile])
   return (
-    <Container className="MyProfile py-5">
+    <Container className="MyProfile py-5 d-flex flex-column h-100">
       <Row className="gy-4">
         <Col xs={12} md={3} className="text-center">
           <img src={userProfile?.avatar} alt="user avatar" />
@@ -89,6 +107,29 @@ const MyProfile = () => {
           </Form.Group>
         </Col>
       </Row>
+
+      <Row className="flex-grow-1">
+        <Button variant="danger" className="mt-auto" onClick={() => setShowDeleteAccountModal(true)}>
+          Delete Account
+        </Button>
+      </Row>
+      <Modal show={showDeleteAccountModal} onHide={() => setShowDeleteAccountModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Please Confirm Action</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>This action will delete your account and all posts and photos associated with it. You will be redirected to the login page.</p>
+          <p>Are you sure you want to proceed?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleDeleteAccount}>
+            {isLoadingDeleteAccount ? <Spinner animation="border" size="sm" /> : "Yes, Delete"}
+          </Button>
+          <Button variant="secondary" onClick={() => setShowDeleteAccountModal(false)}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   )
 }

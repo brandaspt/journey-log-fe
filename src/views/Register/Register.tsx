@@ -56,7 +56,7 @@ const Register = () => {
 
   return (
     <Container className="Register">
-      <h3 className="text-center my-3">New User</h3>
+      <h3 className="text-center py-3">Create Account</h3>
       <div className="text-center">
         <img src="/images/register.png" alt="register" width="200px" />
       </div>

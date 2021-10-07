@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
-import { Container, Button, Spinner, Modal, Form } from "react-bootstrap"
+import { Container, Button, Spinner, Modal, Form, Row, Col } from "react-bootstrap"
 import { AiOutlinePlus, AiOutlineEdit } from "react-icons/ai"
 import { useParams, useHistory } from "react-router-dom"
 import { useAppSelector } from "../../redux/hooks"
@@ -153,26 +153,32 @@ const Post = () => {
   if (!postDetails) return <div></div>
 
   return (
-    <Container className="Post">
-      <div className="d-flex justify-content-center align-items-center">
-        <h2 className="text-center mt-4 mb-0">
-          <span>{postDetails.title}</span>
-        </h2>
-        {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditTitle} />}
-      </div>
-      <div className="d-flex align-items-center justify-content-between mt-4">
-        {!isMyPost && <UserCard userId={postDetails.userId._id} />}
-        <div className="d-flex flex-column align-items-center">
-          <p className="text-muted mb-2">
+    <Container className="Post pt-5">
+      <Row>
+        {!isMyPost && (
+          <Col xs={12} md={4}>
+            <UserCard userId={postDetails.userId._id} />
+          </Col>
+        )}
+        <Col xs={12} md={isMyPost ? 12 : 8}>
+          <div className="d-flex justify-content-center align-items-center">
+            <h2 className="text-center mt-4 mb-0">
+              <span>{postDetails.title}</span>
+            </h2>
+            {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditTitle} />}
+          </div>
+          <p className="text-muted text-center">
             Published: <TimeAgo datetime={postDetails.createdAt} />
           </p>
           {isMyPost && (
-            <Button variant="danger" size="sm" onClick={handleShowPost}>
-              Delete Post
-            </Button>
+            <div className="text-end">
+              <Button variant="danger" size="sm" onClick={handleShowPost}>
+                Delete Post
+              </Button>
+            </div>
           )}
-        </div>
-      </div>
+        </Col>
+      </Row>
       <div className="d-flex align-items-center">
         <h5>
           <strong>Description</strong>

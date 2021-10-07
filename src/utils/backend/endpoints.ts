@@ -46,6 +46,7 @@ export const emailExists = async (email: string) => {
   return data
 }
 export const updateUserDetails = async (payload: IUpdateUserDetails) => await backend.put(`/users/updateProfile`, payload)
+export const deleteUserAccount = async () => await backend.delete("/users/deleteUser")
 
 // POSTS
 export const newPost = async (formData: FormData) => {

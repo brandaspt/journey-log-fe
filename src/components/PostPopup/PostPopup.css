@@ -9,8 +9,8 @@
   row-gap: 5px;
   max-height: 250px;
   overflow-y: scroll;
-  box-shadow: var(--prim-box-shadow);
   border-radius: 5px;
+  box-shadow: var(--prim-box-shadow);
 }
 .post-card .single-photo-wrapper {
   text-align: center;
@@ -31,6 +31,12 @@
 .post-card .card-title,
 .post-card .card-text {
   margin: 0;
+}
+.post-card .num-of-likes {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-35%) translateX(-50%);
+  left: 50%;
 }
 .post-card .post-description {
   max-height: 75px;
