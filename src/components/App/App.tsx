@@ -12,7 +12,7 @@ import NotLoggedIn from "../NotLoggedIn/NotLoggedIn"
 import TopNavbar from "../TopNavbar/TopNavbar"
 import "./App.css"
 
-function App() {
+const App = () => {
   const userData = useAppSelector(userProfileStore)
   return (
     <div className="App">
