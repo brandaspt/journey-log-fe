@@ -18,6 +18,8 @@ import UserCard from "../../components/UserCard/UserCard"
 import "./Dashboard.css"
 import { Link } from "react-router-dom"
 import { deletePhoto } from "../../utils/backend/endpoints"
+import { MdInsertComment } from "react-icons/md"
+import { AiFillLike } from "react-icons/ai"
 
 const Dashboard = () => {
   const followingIds = useAppSelector(userFollowingStore)
@@ -147,15 +149,17 @@ const Dashboard = () => {
                   <div className="post-card">
                     <h5>{post.title}</h5>
                     <p className="text-muted">Created: {new Date(post.createdAt).toLocaleDateString()}</p>
-                    <p className="text-muted">
-                      {post.photos.length} {post.photos.length === 1 ? "photo" : "photos"}
-                    </p>
-                    <p className="text-muted">
-                      {post.comments.length} {post.comments.length === 1 ? "comment" : "comments"}
-                    </p>
-                    <p className="text-muted">
-                      {post.likes?.length} {post.likes?.length === 1 ? "like" : "likes"}
-                    </p>
+                    <div className="d-flex justify-content-between mt-3">
+                      <div className="text-muted d-flex align-items-center">
+                        <FaCamera size={18} color="var(--prim-blue)" className="me-1" /> {post.photos.length}
+                      </div>
+                      <div className="text-muted d-flex align-items-center">
+                        <MdInsertComment size={18} className="me-1" /> {post.comments.length}
+                      </div>
+                      <p className="text-muted d-flex align-items-center">
+                        <AiFillLike size={18} color="var(--prim-dark)" className="me-1" /> {post.likes?.length}
+                      </p>
+                    </div>
                   </div>
                 </Link>
               </Col>

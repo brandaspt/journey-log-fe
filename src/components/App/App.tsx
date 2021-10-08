@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import { useAppSelector } from "../../redux/hooks"
 import { userProfileStore } from "../../redux/user/userSlice"
 import Dashboard from "../../views/Dashboard/Dashboard"
@@ -20,7 +20,9 @@ function App() {
       <Route path="/" component={TopNavbar} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <Route exact path="/" component={Home} />
+      <Route exact path="/">
+        {userData ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+      </Route>
       <Route path="/dashboard" component={userData ? Dashboard : NotLoggedIn} />
       <Route path="/myProfile" component={userData ? MyProfile : NotLoggedIn} />
       <Route path="/friendsMap" component={userData ? FriendsMap : NotLoggedIn} />

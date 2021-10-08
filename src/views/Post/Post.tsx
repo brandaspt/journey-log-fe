@@ -157,6 +157,7 @@ const Post = () => {
       <Row>
         {!isMyPost && (
           <Col xs={12} md={4}>
+            <p>Author:</p>
             <UserCard userId={postDetails.userId._id} />
           </Col>
         )}
@@ -185,11 +186,11 @@ const Post = () => {
         </h5>
         {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditDescription} />}
       </div>
-      <p>{postDetails.description ? postDetails.description : "This post has no description."}</p>
+      <p className="px-3">{postDetails.description ? postDetails.description : "This post has no description."}</p>
       <h5>
         <strong>Photos</strong>
       </h5>
-      <div className="photos-wrapper">
+      <div className="photos-wrapper p-3">
         {postDetails.photos.map(photo => (
           <div key={photo._id} className="d-flex flex-column align-items-center me-3">
             <img src={photo.url} alt="item" />
@@ -213,11 +214,13 @@ const Post = () => {
         <h5>
           <strong>Comments</strong>
         </h5>
-        {!postDetails.comments || postDetails.comments.length === 0 ? (
-          <p>No comments yet</p>
-        ) : (
-          postDetails.comments.map(comment => <Comment key={comment._id} comment={comment} />)
-        )}
+        <div className="px-3">
+          {!postDetails.comments || postDetails.comments.length === 0 ? (
+            <p>No comments yet</p>
+          ) : (
+            postDetails.comments.map(comment => <Comment key={comment._id} comment={comment} />)
+          )}
+        </div>
         {userProfile && (
           <div>
             <Form.Group className="mb-1 mt-3">
