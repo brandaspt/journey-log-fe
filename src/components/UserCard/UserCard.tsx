@@ -53,7 +53,7 @@ const UserCard = ({ userId }: { userId: string }) => {
             <img className="user-avatar" src={publicUserInfo?.publicProfile.avatar} alt="user avatar" referrerPolicy="no-referrer" />
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               <Link to={`/users/${publicUserInfo?.publicProfile._id}/profile`} className="text-reset">
-                <p>
+                <p className="text-center">
                   {publicUserInfo?.publicProfile.name} {publicUserInfo?.publicProfile.surname}
                 </p>
               </Link>

@@ -130,7 +130,7 @@ const Dashboard = () => {
         ) : (
           <Row className="g-2">
             {followingIds?.map(id => (
-              <Col key={id} xs={12} sm={6} md={4}>
+              <Col key={id} xs={12} sm={6} md={4} lg={3}>
                 <UserCard userId={id} />
               </Col>
             ))}
