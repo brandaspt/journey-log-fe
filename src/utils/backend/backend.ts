@@ -3,6 +3,7 @@ import { refreshTokens } from "./endpoints"
 
 const baseURL = process.env.REACT_APP_BACKEND_URL
 
+// Axios instance
 const backend = axios.create({ baseURL, withCredentials: true })
 
 backend.interceptors.response.use(
