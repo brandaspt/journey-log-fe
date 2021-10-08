@@ -20,7 +20,7 @@ const App = () => {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route exact path="/">
-        {userData ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+        <Redirect to="/dashboard" />
       </Route>
       <Route path="/dashboard" component={userData ? Dashboard : NotLoggedIn} />
       <Route path="/myProfile" component={userData ? MyProfile : NotLoggedIn} />
