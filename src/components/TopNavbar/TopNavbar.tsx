@@ -68,7 +68,7 @@ const TopNavbar = () => {
                     <p>Friends Map</p>
                   </NavDropdown.Item>
                 </Link>
-                <Link to="/">
+                <Link to="/login">
                   <NavDropdown.Item as="div" className="p-0">
                     <Button
                       size="sm"
