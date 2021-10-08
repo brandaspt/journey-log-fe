@@ -2,29 +2,32 @@ import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
 import { Container, Button, Spinner, Modal, Form, Row, Col } from "react-bootstrap"
 import { AiOutlinePlus, AiOutlineEdit } from "react-icons/ai"
 import { useParams, useHistory } from "react-router-dom"
-import { useAppSelector } from "../../redux/hooks"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { userMyPostsStore, userProfileStore } from "../../redux/user/userSlice"
-import { IPost } from "../../types/posts"
-import { addComment, addPhotos, deletePhoto, deletePost, editPost, fetchPostById } from "../../utils/backend/endpoints"
+import { addComment, addPhotos, deletePhoto, deletePost, editPost } from "../../utils/backend/endpoints"
 import TimeAgo from "timeago-react"
 import UserCard from "../../components/UserCard/UserCard"
 import Comment from "../../components/Comment/Comment"
 import { heic2jpeg } from "../../utils/helpers/helpers"
 
 import "./Post.css"
+import { getSelectedPostData, selectedPostDataStore } from "../../redux/selectedPost/selectedPost"
+import ToggleLikePost from "../../components/ToggleLikePost/ToggleLikePost"
 
 const Post = () => {
   const userProfile = useAppSelector(userProfileStore)
   const myPosts = useAppSelector(userMyPostsStore)
+  const postDetails = useAppSelector(selectedPostDataStore)
   const params = useParams<{ postId: string }>()
   const postId = params.postId
   const isMyPost = myPosts.find(myPost => myPost._id === postId)
+
+  const dispatch = useAppDispatch()
 
   const inputFileRef = useRef<HTMLInputElement>(null)
 
   const history = useHistory()
 
-  const [postDetails, setPostDetails] = useState<IPost | null>(null)
   const [isLoading, setIsLoading] = useState("")
   const [isLoadingDeletePost, setIsLoadingDeletePost] = useState(false)
   const [isLoadingAddPhotos, setIsLoadingAddPhotos] = useState(false)
@@ -48,17 +51,11 @@ const Post = () => {
   const handleCloseEditDescription = () => setShowEditDescription(false)
   const handleShowEditDescription = () => setShowEditDescription(true)
 
-  const getPost = useCallback(async () => {
-    try {
-      setPostDetails(await fetchPostById(postId))
-    } catch (error) {
-      console.log(error)
-    }
-  }, [postId])
+  const getPost = useCallback(() => dispatch(getSelectedPostData(postId)), [postId, dispatch])
 
   useEffect(() => {
     getPost()
-  }, [postId, getPost])
+  }, [getPost])
 
   const handleEditTitle = async () => {
     setIsLoadingEditTitle(true)
@@ -167,6 +164,9 @@ const Post = () => {
               <span>{postDetails.title}</span>
             </h2>
             {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditTitle} />}
+            <div className="ms-3">
+              <ToggleLikePost />
+            </div>
           </div>
           <p className="text-muted text-center">
             Published: <TimeAgo datetime={postDetails.createdAt} />

@@ -32,11 +32,6 @@
 .post-card .card-text {
   margin: 0;
 }
-.post-card .num-of-likes {
-  color: var(--prim-dark);
-  text-align: right;
-  font-weight: bold;
-}
 .post-card .post-description {
   max-height: 75px;
   overflow-y: scroll;

@@ -1,0 +1,14 @@
+.ToggleLikePost {
+  position: relative;
+}
+.ToggleLikePost svg {
+  cursor: pointer;
+}
+
+.ToggleLikePost .num-of-likes {
+  color: var(--prim-dark);
+  font-weight: bold;
+  position: absolute;
+  top: -13px;
+  right: 0;
+}

@@ -1,29 +1,15 @@
 import { Card, Button } from "react-bootstrap"
-import { AiFillLike, AiOutlineLike } from "react-icons/ai"
 import { Popup } from "react-leaflet"
 import { Link } from "react-router-dom"
 import TimeAgo from "timeago-react"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getSelectedPostData, selectedPostDataStore } from "../../redux/selectedPost/selectedPost"
-import { userProfileStore } from "../../redux/user/userSlice"
-import { toggleLikePost } from "../../utils/backend/endpoints"
+import { useAppSelector } from "../../redux/hooks"
+import { selectedPostDataStore } from "../../redux/selectedPost/selectedPost"
+import ToggleLikePost from "../ToggleLikePost/ToggleLikePost"
 
 import "./PostPopup.css"
 
 const PostPopup = () => {
   const post = useAppSelector(selectedPostDataStore)
-  const me = useAppSelector(userProfileStore)
-
-  const dispatch = useAppDispatch()
-
-  const handleToggleLike = async () => {
-    try {
-      await toggleLikePost(post?._id)
-      dispatch(getSelectedPostData(post?._id))
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   if (!post) return <></>
   return (
@@ -40,7 +26,6 @@ const PostPopup = () => {
             <img src={post.photos[0].url} alt="post item" />
           </div>
         )}
-
         <Card.Body className="mt-3">
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex flex-column me-3">
@@ -55,16 +40,7 @@ const PostPopup = () => {
                 </p>
               </Card.Text>
             </div>
-            <div>
-              <p className="num-of-likes m-0 fs-6">{post.likes?.length}</p>
-              <div onClick={handleToggleLike}>
-                {post.likes?.includes(me?._id) ? (
-                  <AiFillLike size={28} color="var(--prim-dark)" />
-                ) : (
-                  <AiOutlineLike size={28} color="var(--prim-dark)" />
-                )}
-              </div>
-            </div>
+            <ToggleLikePost />
           </div>
           <hr />
           {post.description && (
