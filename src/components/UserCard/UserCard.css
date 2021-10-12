@@ -1,3 +1,6 @@
+.UserCard {
+  max-width: 300px;
+}
 .UserCard .user-avatar {
   height: 64px;
   width: 64px;

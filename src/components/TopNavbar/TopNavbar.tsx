@@ -33,8 +33,8 @@ const TopNavbar = () => {
     <Navbar fixed="top" className="p-0 TopNavbar">
       <Container fluid className="">
         <Navbar.Brand className="p-0 h100" as="div">
-          <Link to="/">
-            <img width="150px" src="/images/JourneyLogLogo.png" alt="" />
+          <Link to="/" className="h100">
+            <div className="logo-wrapper">{/* <img width="150px" src="/images/JourneyLogLogo.png" alt="" /> */}</div>
           </Link>
         </Navbar.Brand>
         <Nav className="ms-auto">

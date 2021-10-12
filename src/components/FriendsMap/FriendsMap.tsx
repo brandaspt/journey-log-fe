@@ -9,6 +9,7 @@ import { IPost } from "../../types/posts"
 import { fetchUserPublicInfo } from "../../utils/backend/endpoints"
 import { maxBounds } from "../../utils/map"
 import FriendsMapMarker from "../FriendsMapMarker/FriendsMapMarker"
+import FriendsMapLegend from "../FriendsMapLegend/FriendsMapLegend"
 
 const FriendsMap = () => {
   const following = useAppSelector(userFollowingStore)
@@ -59,6 +60,7 @@ const FriendsMap = () => {
           ))}
         </MarkerClusterGroup>
       </MapContainer>
+      <FriendsMapLegend />
     </div>
   )
 }

@@ -5,7 +5,6 @@ import { IPhoto } from "../../types/photos"
 import PostPopup from "../PostPopup/PostPopup"
 import PhotoPopup from "../PhotoPopup/PhotoPopup"
 import PostTooltip from "../PostTooltip/PostTooltip"
-import PhotoTooltip from "../PhotoTooltip/PhotoTooltip"
 import { useAppDispatch } from "../../redux/hooks"
 import { setPostData } from "../../redux/selectedPost/selectedPost"
 
@@ -37,7 +36,7 @@ const FriendsMapMarker = ({ content, type }: IFriendsMapMarkerProps) => {
         },
       }}
     >
-      {type === "post" ? <PostTooltip post={content as IPost} /> : <PhotoTooltip photo={content as IPhoto} />}
+      {type === "post" && <PostTooltip post={content as IPost} />}
       {type === "post" ? <PostPopup /> : <PhotoPopup photo={content as IPhoto} />}
     </Marker>
   )

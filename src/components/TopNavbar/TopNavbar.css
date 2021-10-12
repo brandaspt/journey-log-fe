@@ -2,6 +2,20 @@
   height: 65px;
   background-color: rgb(242, 242, 242);
 }
+.TopNavbar .logo-wrapper {
+  background-image: url("../../images/JourneyLogSmall.png");
+  background-position: center;
+  background-size: cover;
+  height: 40px;
+  width: 50px;
+}
+@media screen and (min-width: 600px) {
+  .TopNavbar .logo-wrapper {
+    background-image: url("../../images/JourneyLogLogo.png");
+    width: 150px;
+  }
+}
+
 .TopNavbar.navbar {
   height: 65px;
   box-shadow: 0 0 5px black;
