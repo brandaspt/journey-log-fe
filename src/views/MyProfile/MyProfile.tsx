@@ -108,8 +108,8 @@ const MyProfile = () => {
         </Col>
       </Row>
 
-      <Row className="flex-grow-1">
-        <Button variant="danger" className="mt-auto" onClick={() => setShowDeleteAccountModal(true)}>
+      <Row className="flex-grow-1 justify-content-center">
+        <Button variant="danger" className="mt-auto delete-account-button" onClick={() => setShowDeleteAccountModal(true)}>
           Delete Account
         </Button>
       </Row>

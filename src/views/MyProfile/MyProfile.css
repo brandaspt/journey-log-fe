@@ -8,3 +8,6 @@
   min-height: 100%;
   max-width: 500px;
 }
+.MyProfile .delete-account-button {
+  max-width: 300px;
+}
