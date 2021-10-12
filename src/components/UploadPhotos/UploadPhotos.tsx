@@ -230,7 +230,7 @@ const UploadPhotos = () => {
                         max={90}
                         step={0.0001}
                         required
-                        value={photo.latitude && photo.latitude.toFixed(4)}
+                        value={photo.latitude}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleLatChange(e, idx)}
                       />
                     </InputGroup>
@@ -243,7 +243,7 @@ const UploadPhotos = () => {
                         max={180}
                         step={0.0001}
                         required
-                        value={photo.longitude && photo.longitude.toFixed(4)}
+                        value={photo.longitude}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleLngChange(e, idx)}
                       />
                     </InputGroup>
