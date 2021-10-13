@@ -5,7 +5,7 @@
 .TopNavbar .logo-wrapper {
   background-image: url("../../images/JourneyLogSmall.png");
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   height: 40px;
   width: 50px;
 }

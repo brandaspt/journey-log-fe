@@ -4,6 +4,9 @@
 h3.Greeting {
   margin: 0;
   padding-top: 50px;
+  font-size: 50px;
+  font-weight: 800;
+  color: rgb(60, 47, 29);
 }
 
 .Greeting span {

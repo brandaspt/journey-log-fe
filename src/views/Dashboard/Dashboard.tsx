@@ -56,56 +56,56 @@ const Dashboard = () => {
       <section className="at-a-glance">
         <Row className="g-2">
           <Col xs={12} sm={6} md={3}>
-            <Card className="text-center h-100">
-              <Card.Body className="d-flex align-items-center justify-content-between">
-                <IoIosPeople size={42} color="var(--prim-dark)" />
-                <div className="d-flex flex-column align-items-end">
-                  <p className="text-muted">Followers</p>
-                  <h3>
-                    <a href="#followers">{followersIds?.length}</a>
-                  </h3>
-                </div>
-              </Card.Body>
-            </Card>
+            <a href="#followers" className="text-reset">
+              <Card className="text-center h-100">
+                <Card.Body className="d-flex align-items-center justify-content-between">
+                  <IoIosPeople color="var(--prim-dark)" />
+                  <div className="d-flex flex-column align-items-end">
+                    <p className="text-muted">Followers</p>
+                    <h3>{followersIds?.length}</h3>
+                  </div>
+                </Card.Body>
+              </Card>
+            </a>
           </Col>
           <Col xs={12} sm={6} md={3}>
-            <Card className="text-center h-100">
-              <Card.Body className="d-flex align-items-center justify-content-between">
-                <RiUserHeartFill size={36} color="var(--prim-light)" />
-                <div className="d-flex flex-column align-items-end">
-                  <p className="text-muted">Following</p>
-                  <h3>
-                    <a href="#following">{followingIds?.length}</a>
-                  </h3>
-                </div>
-              </Card.Body>
-            </Card>
+            <a href="#following" className="text-reset">
+              <Card className="text-center h-100">
+                <Card.Body className="d-flex align-items-center justify-content-between">
+                  <RiUserHeartFill color="var(--prim-light)" />
+                  <div className="d-flex flex-column align-items-end">
+                    <p className="text-muted">Following</p>
+                    <h3>{followingIds?.length}</h3>
+                  </div>
+                </Card.Body>
+              </Card>
+            </a>
           </Col>
           <Col xs={12} sm={6} md={3}>
-            <Card className="text-center h-100">
-              <Card.Body className="d-flex align-items-center justify-content-between">
-                <FaAnchor size={36} color="var(--prim-green)" />
-                <div className="d-flex flex-column align-items-end">
-                  <p className="text-muted">Posts</p>
-                  <h3>
-                    <a href="#posts">{myPosts.length}</a>
-                  </h3>
-                </div>
-              </Card.Body>
-            </Card>
+            <a href="#posts" className="text-reset">
+              <Card className="text-center h-100">
+                <Card.Body className="d-flex align-items-center justify-content-between">
+                  <FaAnchor color="var(--prim-green)" />
+                  <div className="d-flex flex-column align-items-end">
+                    <p className="text-muted">Posts</p>
+                    <h3>{myPosts.length}</h3>
+                  </div>
+                </Card.Body>
+              </Card>
+            </a>
           </Col>
           <Col xs={12} sm={6} md={3}>
-            <Card className="text-center">
-              <Card.Body className="d-flex align-items-center justify-content-between">
-                <FaCamera size={36} color="var(--prim-blue)" />
-                <div className="d-flex flex-column align-items-end">
-                  <p className="text-muted">Photos</p>
-                  <h3>
-                    <a href="#photos">{myPhotos.length}</a>
-                  </h3>
-                </div>
-              </Card.Body>
-            </Card>
+            <a href="#photos" className="text-reset">
+              <Card className="text-center">
+                <Card.Body className="d-flex align-items-center justify-content-between">
+                  <FaCamera color="var(--prim-blue)" />
+                  <div className="d-flex flex-column align-items-end">
+                    <p className="text-muted">Photos</p>
+                    <h3>{myPhotos.length}</h3>
+                  </div>
+                </Card.Body>
+              </Card>
+            </a>
           </Col>
         </Row>
       </section>
@@ -147,17 +147,19 @@ const Dashboard = () => {
               <Col key={post._id} xs={12} sm={6} md={4} lg={3}>
                 <Link to={`/posts/${post._id}`} className="text-reset">
                   <div className="post-card">
-                    <h5>{post.title}</h5>
-                    <p className="text-muted">Created: {new Date(post.createdAt).toLocaleDateString()}</p>
+                    <h5 className="post-title" title={post.title}>
+                      {post.title}
+                    </h5>
+                    <p className="text-muted post-created">Created: {new Date(post.createdAt).toLocaleDateString()}</p>
                     <div className="d-flex justify-content-between mt-3">
                       <div className="text-muted d-flex align-items-center">
-                        <FaCamera size={18} color="var(--prim-blue)" className="me-1" /> {post.photos.length}
+                        <FaCamera size={18} color="var(--prim-blue)" className="me-1" title="Photos" /> {post.photos.length}
                       </div>
                       <div className="text-muted d-flex align-items-center">
-                        <MdInsertComment size={18} className="me-1" /> {post.comments.length}
+                        <MdInsertComment size={18} className="me-1" title="Comments" /> {post.comments.length}
                       </div>
                       <p className="text-muted d-flex align-items-center">
-                        <AiFillLike size={18} color="var(--prim-dark)" className="me-1" /> {post.likes?.length}
+                        <AiFillLike size={18} color="var(--prim-dark)" className="me-1" title="Likes" /> {post.likes?.length}
                       </p>
                     </div>
                   </div>
@@ -176,9 +178,15 @@ const Dashboard = () => {
             {myPhotos?.map(photo => (
               <Col key={photo._id} xs={12} sm={6} md={4} lg={3}>
                 <div className="photo-card">
-                  <div className="p-2 d-flex align-items-center justify-content-between">
-                    <p className="text-muted">Uploaded: {new Date(photo.createdAt).toLocaleDateString()}</p>
-                    <Button variant="danger" size="sm" onClick={() => handleDeletePhoto(photo._id)}>
+                  <div className="pb-1 d-flex align-items-end justify-content-between">
+                    <p className="text-muted photos-uploaded">Uploaded: {new Date(photo.createdAt).toLocaleDateString()}</p>
+                    <Button
+                      className="delete-photo-btn"
+                      variant="danger"
+                      size="sm"
+                      onClick={() => handleDeletePhoto(photo._id)}
+                      title="Delete photo"
+                    >
                       {deletePhotoLoading === photo._id ? <Spinner animation="border" size="sm" /> : <FaTrashAlt />}
                     </Button>
                   </div>

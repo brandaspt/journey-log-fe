@@ -4,6 +4,7 @@
   border-radius: 3px;
   background-color: var(--prim-dark);
   color: white;
+  font-size: 18px;
 }
 .UnfollowBtn:hover {
   background-color: white;

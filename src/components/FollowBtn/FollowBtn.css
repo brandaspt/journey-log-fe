@@ -4,6 +4,7 @@
   border-radius: 3px;
   background-color: white;
   color: var(--prim-dark);
+  font-size: 18px;
 }
 .FollowBtn:hover {
   background-color: var(--prim-dark);

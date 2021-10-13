@@ -153,12 +153,12 @@ const Post = () => {
     <Container className="Post pt-5">
       <Row>
         {!isMyPost && (
-          <Col xs={12} md={4}>
+          <Col xs={12} md={5}>
             <p>Author:</p>
             <UserCard userId={postDetails.userId._id} />
           </Col>
         )}
-        <Col xs={12} md={isMyPost ? 12 : 8}>
+        <Col xs={12} md={isMyPost ? 12 : 7}>
           <div className="d-flex justify-content-center align-items-center">
             <h2 className="text-center mt-4 mb-0">
               <span>{postDetails.title}</span>
@@ -186,11 +186,11 @@ const Post = () => {
         </h5>
         {isMyPost && <AiOutlineEdit className="edit-btn" onClick={handleShowEditDescription} />}
       </div>
-      <p className="px-3">{postDetails.description ? postDetails.description : "This post has no description."}</p>
+      <p>{postDetails.description ? postDetails.description : "This post has no description."}</p>
       <h5>
         <strong>Photos</strong>
       </h5>
-      <div className="photos-wrapper p-3">
+      <div className="photos-wrapper py-3">
         {postDetails.photos.map(photo => (
           <div key={photo._id} className="d-flex flex-column align-items-center me-3">
             <img src={photo.url} alt="item" />
@@ -214,7 +214,7 @@ const Post = () => {
         <h5>
           <strong>Comments</strong>
         </h5>
-        <div className="px-3">
+        <div>
           {!postDetails.comments || postDetails.comments.length === 0 ? (
             <p>No comments yet</p>
           ) : (

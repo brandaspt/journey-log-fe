@@ -2,15 +2,41 @@
   min-height: 100%;
   scroll-behavior: smooth;
 }
+.Dashboard section > h3 {
+  font-weight: 800;
+  font-size: 18px;
+}
+.Dashboard .post-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+}
+.Dashboard .post-created {
+  font-size: 14px;
+}
 .Dashboard .row {
   margin-top: 5px;
 }
-.Dashboard .at-a-glance a {
-  text-decoration: underline;
-  color: black;
+.Dashboard .at-a-glance h3 {
+  font-size: 40px;
+  font-weight: 600;
+}
+.Dashboard .at-a-glance svg {
+  font-size: 60px;
+  opacity: 0.6;
+}
+.Dashboard .at-a-glance .card {
+  border: none;
+  transition: all 0.5s;
+  box-shadow: var(--prim-box-shadow);
+}
+.Dashboard .at-a-glance .card:hover {
+  transform: scale(1.05);
 }
 .Dashboard section:hover {
   z-index: 10;
+  position: relative;
 }
 .Dashboard .Greeting,
 .Dashboard .at-a-glance,
@@ -39,12 +65,13 @@
 .Dashboard .posts .post-card {
   padding: 1rem;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: var(--prim-box-shadow);
+  transition: all 0.5s;
   cursor: pointer;
 }
 
 .Dashboard .posts .post-card:hover {
-  background-color: rgba(0, 0, 0, 0.03);
+  transform: scale(1.05);
 }
 .Dashboard a {
   text-decoration: none;
@@ -53,10 +80,26 @@
   animation-delay: 2000ms;
   padding-bottom: 50px;
 }
-.Dashboard .photos .photo-card {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+.Dashboard .photos .photos-uploaded {
+  font-size: 14px;
+}
+.Dashboard .photos .delete-photo-btn {
+  visibility: hidden;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+.Dashboard .photos .photo-card:hover .delete-photo-btn {
+  visibility: visible;
+}
+.Dashboard .photos .photo-card img {
+  border-radius: 3px;
+  box-shadow: var(--prim-box-shadow);
 }
 .Dashboard section {
-  padding-top: 70px;
+  padding-top: 40px;
 }

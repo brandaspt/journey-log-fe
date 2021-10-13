@@ -1,6 +1,7 @@
 .Comment {
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+  box-shadow: var(--prim-box-shadow);
   padding: 5px;
 }
 .Comment img {
