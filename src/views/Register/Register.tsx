@@ -55,7 +55,7 @@ const Register = () => {
   }, [formInfo.password, formInfo.confirmPassword])
 
   return (
-    <Container className="Register">
+    <Container className="Register py-4">
       <h3 className="text-center py-3">Create Account</h3>
       <div className="text-center">
         <img src="/images/register.png" alt="register" width="200px" />
@@ -88,7 +88,7 @@ const Register = () => {
             </Form.Group>
           </Col>
         </Row>
-        <hr />
+
         <Row>
           <Col xs={12} md={6}>
             <Form.Group className="mb-2">
@@ -107,7 +107,7 @@ const Register = () => {
             </Form.Group>
           </Col>
         </Row>
-        <hr />
+
         <Row>
           <Col xs={12} md={6}>
             <Form.Group className="mb-2">

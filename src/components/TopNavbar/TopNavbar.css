@@ -1,6 +1,6 @@
 .TopNavbar {
   height: 65px;
-  background-color: rgb(242, 242, 242);
+  background-color: white;
 }
 .TopNavbar .logo-wrapper {
   background-image: url("../../images/JourneyLogSmall.png");
@@ -18,7 +18,7 @@
 
 .TopNavbar.navbar {
   height: 65px;
-  box-shadow: 0 0 5px black;
+  box-shadow: var(--prim-box-shadow);
 }
 .TopNavbar .avatar {
   height: 38px;

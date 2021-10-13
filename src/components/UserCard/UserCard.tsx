@@ -7,6 +7,7 @@ import { IPublicUserData } from "../../types/users"
 import { fetchUserPublicInfo } from "../../utils/backend/endpoints"
 import FollowBtn from "../FollowBtn/FollowBtn"
 import UnfollowBtn from "../UnfollowBtn/UnfollowBtn"
+import { FaMapMarkedAlt } from "react-icons/fa"
 
 import "./UserCard.css"
 
@@ -52,11 +53,11 @@ const UserCard = ({ userId }: { userId: string }) => {
           <div className="d-flex justify-content-start align-items-stretch">
             <img className="user-avatar" src={publicUserInfo?.publicProfile.avatar} alt="user avatar" referrerPolicy="no-referrer" />
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
-              <Link to={`/users/${publicUserInfo?.publicProfile._id}/profile`} className="text-reset">
-                <p className="text-center">
-                  {publicUserInfo?.publicProfile.name} {publicUserInfo?.publicProfile.surname}
-                </p>
-              </Link>
+              {/* <Link to={`/users/${publicUserInfo?.publicProfile._id}/profile`} className="text-reset"> */}
+              <p className="text-center">
+                {publicUserInfo?.publicProfile.name} {publicUserInfo?.publicProfile.surname}
+              </p>
+              {/* </Link> */}
               <div className="d-flex align-items-center justify-content-evenly">
                 {!userData ? (
                   <></>
@@ -69,7 +70,9 @@ const UserCard = ({ userId }: { userId: string }) => {
                   <></>
                 ) : (
                   <Link to={`/users/${publicUserInfo?.publicProfile._id}/map`}>
-                    <button className="map-btn">Map</button>
+                    <button className="map-btn" title="Visit user's map">
+                      <FaMapMarkedAlt />
+                    </button>
                   </Link>
                 )}
               </div>

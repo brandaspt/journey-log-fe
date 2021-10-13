@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap");
 @keyframes slide-in-top {
   0% {
     transform: translateY(-50px);
@@ -13,8 +14,7 @@ body {
   margin: 0;
   padding-top: 65px;
   background-color: rgba(0, 0, 0, 0.03);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,22 +39,22 @@ h3 {
 
 :root {
   --prim-dark: #d86e74;
-  --prim-light: #d8b26e;
+  --prim-light: #dec84c;
   --prim-green: #96d86e;
   --prim-blue: #6e98d8;
-  --prim-box-shadow: 0 3px 6px 0px rgb(0 0 0 / 50%);
+  --prim-box-shadow: 0 3px 6px -3px rgb(0 0 0 / 30%);
 }
 .main-btn {
   background-color: #96d86e;
-  color: black;
+  color: #1e3b0c;
   font-weight: 500;
   border: none;
-  width: 100%;
-  justify-content: center;
-  opacity: 0.8;
+  /* width: 100%; */
+  /* justify-content: center; */
+  /* opacity: 0.8; */
   box-shadow: var(--prim-box-shadow);
-  padding: 8px 10px;
-  border-radius: 0.2rem;
+  padding: 0.75rem 2rem;
+  border-radius: 10px;
   font-size: 18px;
 }
 .main-btn:hover {

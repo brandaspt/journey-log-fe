@@ -129,13 +129,19 @@ const UploadPhotos = () => {
 
   return (
     <div className="UploadPhotos">
-      <div className="d-flex flex-column align-items-center">
-        <button className="d-flex align-items-center upload-btn main-btn" onClick={() => setShow(true)}>
-          <AiOutlineUpload className="me-3" size={20} />
-          Upload Photos
-        </button>
-        <em className="post-info">or click anywhere on the map to start a new post!</em>
-      </div>
+      <button
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Or click anywhere on the map to start a post"
+        className="d-flex align-items-center upload-btn main-btn"
+        onClick={() => setShow(true)}
+      >
+        <div>
+          <AiOutlineUpload size={24} />
+        </div>
+        <p className="ps-3">Upload Photos</p>
+      </button>
+
       <Offcanvas show={show} onHide={handleClose} placement="end" className="UploadPhotosCanvas">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title as="h2" className="text-center w-100">

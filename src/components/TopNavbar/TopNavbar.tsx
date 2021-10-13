@@ -43,7 +43,7 @@ const TopNavbar = () => {
           ) : userData ? (
             <div className="d-flex align-items-center">
               <SearchUsers />
-              <NavDropdown align="end" title={<img className="avatar" src={userData.avatar} alt="avatar" />}>
+              <NavDropdown align="end" title={<img className="avatar" src={userData.avatar} alt="avatar" referrerPolicy="no-referrer" />}>
                 <Link to="/myProfile">
                   <NavDropdown.Item as="div">
                     <FaUserSecret />
