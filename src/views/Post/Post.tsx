@@ -192,10 +192,10 @@ const Post = () => {
       </h5>
       <div className="photos-wrapper py-3">
         {postDetails.photos.map(photo => (
-          <div key={photo._id} className="d-flex flex-column align-items-center me-3">
+          <div key={photo._id} className="d-flex flex-column align-items-center me-3 photo-item position-relative">
             <img src={photo.url} alt="item" />
             {isMyPost && (
-              <Button variant="warning" size="sm" className="mt-2" onClick={() => handleDeletePhoto(photo._id)}>
+              <Button variant="warning" size="sm" className="mt-2 delete-photo-btn" onClick={() => handleDeletePhoto(photo._id)}>
                 {isLoading === photo._id ? <Spinner animation="border" size="sm" /> : "Delete Photo"}
               </Button>
             )}

@@ -19,10 +19,20 @@
   align-items: center;
   overflow-x: scroll;
 }
+
 .Post .photos-wrapper img {
   height: 300px;
   box-shadow: var(--prim-box-shadow);
   border-radius: 5px;
+}
+.Post .delete-photo-btn {
+  visibility: hidden;
+  /* position: absolute; */
+  /* bottom: 0px; */
+  /* transform: translateY(100%); */
+}
+.Post .photo-item:hover .delete-photo-btn {
+  visibility: visible;
 }
 .Post .photos-wrapper .add-photo-btn-wrapper {
   flex-shrink: 0;

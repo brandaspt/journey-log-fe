@@ -59,7 +59,7 @@ const TopNavbar = () => {
                 <Link to={`/users/${userData._id}/map`}>
                   <NavDropdown.Item as="div">
                     <RiRoadMapLine />
-                    <p>Map</p>
+                    <p>My Map</p>
                   </NavDropdown.Item>
                 </Link>
                 <Link to="/friendsMap">
@@ -72,8 +72,7 @@ const TopNavbar = () => {
                   <NavDropdown.Item as="div" className="p-0">
                     <Button
                       size="sm"
-                      variant="danger"
-                      className="w-100 d-flex align-items-center justify-content-center"
+                      className="w-100 d-flex align-items-center justify-content-center logout-btn"
                       as="div"
                       onClick={() => {
                         dispatch(logoutUserAction())

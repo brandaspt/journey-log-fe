@@ -152,13 +152,13 @@ const Dashboard = () => {
                     </h5>
                     <p className="text-muted post-created">Created: {new Date(post.createdAt).toLocaleDateString()}</p>
                     <div className="d-flex justify-content-between mt-3">
-                      <div className="text-muted d-flex align-items-center">
+                      <div className="d-flex align-items-center">
                         <FaCamera size={18} color="var(--prim-blue)" className="me-1" title="Photos" /> {post.photos.length}
                       </div>
-                      <div className="text-muted d-flex align-items-center">
-                        <MdInsertComment size={18} className="me-1" title="Comments" /> {post.comments.length}
+                      <div className="d-flex align-items-center">
+                        <MdInsertComment size={18} className="me-1" color="#808080" title="Comments" /> {post.comments.length}
                       </div>
-                      <p className="text-muted d-flex align-items-center">
+                      <p className="d-flex align-items-center">
                         <AiFillLike size={18} color="var(--prim-dark)" className="me-1" title="Likes" /> {post.likes?.length}
                       </p>
                     </div>
@@ -176,7 +176,7 @@ const Dashboard = () => {
         ) : (
           <Row className="g-2">
             {myPhotos?.map(photo => (
-              <Col key={photo._id} xs={12} sm={6} md={4} lg={3}>
+              <Col key={photo._id} xs={12} sm={6} md={4} lg={3} className="mb-2">
                 <div className="photo-card">
                   <div className="pb-1 d-flex align-items-end justify-content-between">
                     <p className="text-muted photos-uploaded">Uploaded: {new Date(photo.createdAt).toLocaleDateString()}</p>

@@ -7,6 +7,7 @@ h3.Greeting {
   font-size: 50px;
   font-weight: 800;
   color: rgb(60, 47, 29);
+  letter-spacing: -1.4px;
 }
 
 .Greeting span {

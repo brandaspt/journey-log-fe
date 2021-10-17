@@ -55,18 +55,23 @@ const Map = () => {
               url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
             />
           </LayersControl.BaseLayer>
+          <LayersControl.Overlay name="Posts" checked>
+            <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
+              {isMe
+                ? myPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)
+                : selectedUserData?.publicPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)}
+            </MarkerClusterGroup>
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Photos" checked>
+            <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
+              {isMe
+                ? myPhotos.map(photo => <MapMarker key={photo._id} content={photo} type="photo" />)
+                : selectedUserData?.publicPhotos.map(photo => <MapMarker key={photo._id} content={photo} type="photo" />)}
+            </MarkerClusterGroup>
+          </LayersControl.Overlay>
         </LayersControl>
 
         {isMe && <NewPost />}
-
-        <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
-          {isMe
-            ? myPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)
-            : selectedUserData?.publicPosts.map(post => <MapMarker key={post._id} content={post} type="post" />)}
-          {isMe
-            ? myPhotos.map(photo => <MapMarker key={photo._id} content={photo} type="photo" />)
-            : selectedUserData?.publicPhotos.map(photo => <MapMarker key={photo._id} content={photo} type="photo" />)}
-        </MarkerClusterGroup>
       </MapContainer>
       {isMe && <UploadPhotos />}
       <MapLegend isMe={isMe} />

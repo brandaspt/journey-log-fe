@@ -29,10 +29,15 @@
 .TopNavbar .dropdown-item {
   display: flex;
   align-items: center;
+  padding: 1rem 5rem;
 }
 
 .TopNavbar .dropdown-item p {
   margin-left: 10px;
+}
+.TopNavbar .dropdown-item:active {
+  color: #1e2125;
+  background-color: #e9ecef;
 }
 
 .TopNavbar .dropdown-toggle {
@@ -41,14 +46,26 @@
 }
 
 .TopNavbar .dropdown-menu.show {
-  margin-top: 5px;
+  margin-top: 7px;
   right: -12px;
-  padding-bottom: 0;
+  padding: 0;
+  border: none;
+  text-align: center;
+  box-shadow: 0px 10px 30px -5px #797979;
 }
 
-.TopNavbar .btn-danger {
+.TopNavbar .logout-btn {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  background-color: rgb(211, 211, 211);
+  border: none;
+  font-size: 16px;
+  color: rgb(65, 61, 61);
+}
+.TopNavbar .logout-btn:hover {
+  background-color: #dc3545;
+  color: white;
+  border-color: gray;
 }
 
 .TopNavbar a {

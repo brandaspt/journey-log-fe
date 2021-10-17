@@ -11,9 +11,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 0;
+  letter-spacing: -0.8px;
 }
 .Dashboard .post-created {
-  font-size: 14px;
+  font-size: 12px;
 }
 .Dashboard .row {
   margin-top: 5px;
@@ -34,6 +35,9 @@
 .Dashboard .at-a-glance .card:hover {
   transform: scale(1.05);
 }
+.Dashboard .at-a-glance .card:hover h3 {
+  font-weight: 800;
+}
 .Dashboard section:hover {
   z-index: 10;
   position: relative;
@@ -52,6 +56,8 @@
 }
 .Dashboard .at-a-glance {
   animation-delay: 400ms;
+  padding-top: 1rem;
+  padding-bottom: 3.5rem;
 }
 .Dashboard .followers {
   animation-delay: 800ms;
@@ -81,7 +87,7 @@
   padding-bottom: 50px;
 }
 .Dashboard .photos .photos-uploaded {
-  font-size: 14px;
+  font-size: 12px;
 }
 .Dashboard .photos .delete-photo-btn {
   visibility: hidden;

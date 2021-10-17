@@ -49,16 +49,21 @@ const FriendsMap = () => {
               url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
             />
           </LayersControl.BaseLayer>
+          <LayersControl.Overlay name="Posts" checked>
+            <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
+              {allPosts.map(post => (
+                <FriendsMapMarker key={post._id} content={post} type="post" />
+              ))}
+            </MarkerClusterGroup>
+          </LayersControl.Overlay>
+          <LayersControl.Overlay name="Photos" checked>
+            <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
+              {allPhotos.map(photo => (
+                <FriendsMapMarker key={photo._id} content={photo} type="photo" />
+              ))}
+            </MarkerClusterGroup>
+          </LayersControl.Overlay>
         </LayersControl>
-
-        <MarkerClusterGroup maxClusterRadius={35} key={uuidv4()}>
-          {allPhotos.map(photo => (
-            <FriendsMapMarker key={photo._id} content={photo} type="photo" />
-          ))}
-          {allPosts.map(post => (
-            <FriendsMapMarker key={post._id} content={post} type="post" />
-          ))}
-        </MarkerClusterGroup>
       </MapContainer>
       <FriendsMapLegend />
     </div>
