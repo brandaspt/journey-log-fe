@@ -12,7 +12,7 @@ interface ICommentProps {
 const Comment = ({ comment }: ICommentProps) => {
   const user = comment.userId as IUser
   return (
-    <div className="Comment d-flex mb-1">
+    <div className="Comment d-flex mb-1 p-3">
       <Link to={`/users/${user._id}/map`}>
         <img src={user.avatar} alt="user avatar" />
       </Link>

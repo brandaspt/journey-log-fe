@@ -225,7 +225,13 @@ const Post = () => {
           <div>
             <Form.Group className="mb-1 mt-3">
               <Form.Label>New Comment:</Form.Label>
-              <Form.Control as="textarea" rows={3} value={newComment} onChange={e => setNewComment(e.target.value)} />
+              <Form.Control
+                className="comment-input"
+                as="textarea"
+                rows={3}
+                value={newComment}
+                onChange={e => setNewComment(e.target.value)}
+              />
             </Form.Group>
             <div className="text-end">
               <Button size="sm" onClick={handleNewComment}>
