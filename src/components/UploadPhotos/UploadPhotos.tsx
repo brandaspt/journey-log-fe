@@ -53,6 +53,7 @@ const UploadPhotos = () => {
       return [...acc, { ...curr, ...urlsArr[idx], isPrivate: false }]
     }, [])
     setSelectedPhotos(filesArr)
+    e.target.value = ""
     setIsLoadingPhotos(false)
   }
 
@@ -234,7 +235,7 @@ const UploadPhotos = () => {
                         placeholder="-90...90"
                         min={-90}
                         max={90}
-                        step={0.0001}
+                        step="any"
                         required
                         value={photo.latitude}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleLatChange(e, idx)}
@@ -247,7 +248,7 @@ const UploadPhotos = () => {
                         placeholder="-180...180"
                         min={-180}
                         max={180}
-                        step={0.0001}
+                        step="any"
                         required
                         value={photo.longitude}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleLngChange(e, idx)}

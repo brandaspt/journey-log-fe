@@ -3,11 +3,16 @@
 }
 h3.Greeting {
   margin: 0;
-  padding-top: 50px;
+  padding-top: 2.5rem;
   font-size: 50px;
   font-weight: 800;
   color: rgb(60, 47, 29);
   letter-spacing: -1.4px;
+}
+@media screen and (min-width: 576px) {
+  h3.Greeting {
+    padding-top: 10.5rem;
+  }
 }
 
 .Greeting span {

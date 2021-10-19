@@ -53,7 +53,7 @@ const SearchUsers = () => {
                 {user.name} {user.surname}
               </p>
               {user._id === userData?._id ? (
-                <button className="me-btn">Me</button>
+                <></>
               ) : userData?.following.includes(user._id) ? (
                 <UnfollowBtn userId={user._id} />
               ) : (

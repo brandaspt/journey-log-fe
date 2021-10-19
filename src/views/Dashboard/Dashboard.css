@@ -57,7 +57,12 @@
 .Dashboard .at-a-glance {
   animation-delay: 400ms;
   padding-top: 1rem;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2.5rem;
+}
+@media screen and (min-width: 576px) {
+  .Dashboard .at-a-glance {
+    padding-bottom: 10.5rem;
+  }
 }
 .Dashboard .followers {
   animation-delay: 800ms;

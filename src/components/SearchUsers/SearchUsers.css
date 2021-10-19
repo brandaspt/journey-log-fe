@@ -43,16 +43,6 @@
   background-color: rgb(230, 230, 230);
 }
 
-.SearchUsers .search-results .me-btn {
-  font-size: 16px;
-  border: 1px solid rgb(162, 162, 162);
-  border-radius: 3px;
-  margin-left: auto;
-  background-color: white;
-  color: rgb(162, 162, 162);
-  cursor: auto;
-  font-weight: 800;
-}
 .SearchUsers .search-results .FollowBtn,
 .SearchUsers .search-results .UnfollowBtn {
   margin-left: auto;
