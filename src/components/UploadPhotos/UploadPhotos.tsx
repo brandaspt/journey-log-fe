@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { Button, Form, FormControl, InputGroup, Offcanvas, Spinner } from "react-bootstrap"
-import { AiOutlineUpload } from "react-icons/ai"
+import { MdAdd } from "react-icons/md"
 import { FaCheck } from "react-icons/fa"
 import { FiUpload } from "react-icons/fi"
 import { MdAddAPhoto, MdRemoveCircle } from "react-icons/md"
@@ -138,7 +138,7 @@ const UploadPhotos = () => {
         onClick={() => setShow(true)}
       >
         <div>
-          <AiOutlineUpload size={24} />
+          <MdAdd size={24} />
         </div>
         <p className="ps-3">Upload Photos</p>
       </button>

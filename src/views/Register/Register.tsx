@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../redux/hooks"
 import { getMyPhotosAction, getMyPostsAction, getUserDataAction } from "../../redux/user/userSlice"
 import { emailExists, registerUser } from "../../utils/backend/endpoints"
+import RegisterImg from "../../images/Register.png"
 
 import "./Register.css"
 
@@ -58,7 +59,7 @@ const Register = () => {
     <Container className="Register py-4">
       <h3 className="text-center py-3">Create Account</h3>
       <div className="text-center">
-        <img src="/images/register.png" alt="register" width="200px" />
+        <img src={RegisterImg} alt="register" width="200px" />
       </div>
       <Form onSubmit={handleSubmit}>
         <Row>

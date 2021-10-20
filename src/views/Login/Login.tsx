@@ -1,10 +1,11 @@
 import { FormEvent, useState } from "react"
-import { Form, Button, Alert } from "react-bootstrap"
+import { Form, Button, Alert, Container } from "react-bootstrap"
 import { Link, useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../redux/hooks"
 import { getMyPhotosAction, getMyPostsAction, getUserDataAction } from "../../redux/user/userSlice"
 import { loginUser } from "../../utils/backend/endpoints"
 import { FcGoogle } from "react-icons/fc"
+import Security from "../../images/Security.png"
 import "./Login.css"
 
 export interface ILoginCredentials {
@@ -37,7 +38,8 @@ const Login = () => {
   }
 
   return (
-    <div className="Login">
+    <Container className="Login">
+      <img src={Security} alt="" />
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-2">
           <Form.Label>Email address</Form.Label>
@@ -83,7 +85,7 @@ const Login = () => {
           </Link>
         </div>
       </Form>
-    </div>
+    </Container>
   )
 }
 
